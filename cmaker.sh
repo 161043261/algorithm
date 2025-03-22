@@ -83,4 +83,4 @@ mkdir build && cd build
 cmake .. -G Ninja && ninja
 ./main
 
-echo ==================== Done! ====================
+echo "Copyright https://161043261.github.io. All rights reserved."

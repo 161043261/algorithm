@@ -16,10 +16,17 @@ else()
   set(CMAKE_CXX_COMPILER clang++)
 endif()
 
+# debug
+set(CMAKE_BUILD_TYPE Debug)
+
 project(algorithm)
 
 add_executable(main ./cpp/main.hpp ./cpp/main.cpp)
 add_executable(dfs ./cpp/dfs.cpp)
+
+# hot100
+add_executable(239 ./hot100/239.cpp)
+add_executable(994 ./hot100/994.cpp)
 
 find_program(CLANG_FORMAT clang-format)
 if(CLANG_FORMAT)

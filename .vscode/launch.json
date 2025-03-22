@@ -8,10 +8,10 @@
       "type": "lldb-dap",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceRoot}/build/dfs",
+      "program": "${workspaceRoot}/build/239",
       "args": [],
       "env": [],
-      "cwd": "${workspaceRoot}"
+      "cwd": "${workspaceRoot}",
     }
   ]
 }
