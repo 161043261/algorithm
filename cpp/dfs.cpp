@@ -3,12 +3,11 @@
 using namespace std;
 
 vector<vector<char>> grid{};
-
 vector<vector<bool>> visited;
 
 auto directions = vector<vector<int>>{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
-void dfs(int y, int x); // declare
+void dfs(int y, int x);  // declare
 
 auto dfs(int y, int x) -> void {
   visited[y][x] = true;
@@ -39,7 +38,7 @@ auto fn() {
 }
 
 class Solution {
-public:
+ public:
   int numIslands(vector<vector<char>> &grid_) {
     ans = 0;
     grid = grid_;

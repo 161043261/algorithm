@@ -16,17 +16,16 @@ else()
   set(CMAKE_CXX_COMPILER clang++)
 endif()
 
-project(algorithm)
+project(demo)
 
-add_executable(main ./cpp/main.hpp ./cpp/main.cpp)
-add_executable(dfs ./cpp/dfs.cpp)
+add_executable(main ./src/main.hpp ./src/main.cpp)
 
 find_program(CLANG_FORMAT clang-format)
 if(CLANG_FORMAT)
   add_custom_target(format ALL
     COMMAND ${CLANG_FORMAT} -i -style=google
-    ${CMAKE_SOURCE_DIR}/cpp/*.hpp
-    ${CMAKE_SOURCE_DIR}/cpp/*.cpp
+    ${CMAKE_SOURCE_DIR}/src/*.hpp
+    ${CMAKE_SOURCE_DIR}/src/*.cpp
   )
 else()
   message(WARNING "clang-format not found")
