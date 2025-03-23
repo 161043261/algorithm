@@ -3,18 +3,18 @@
 # sudo apt install build-essential clang clang-format clangd cmake gdb lld llvm ninja-build -y
 
 if [ -z "$1" ]; then
-  PROJECT="cmake-app"
+  ROOT="cmake-app"
 else
-  PROJECT=$1
+  ROOT=$1
 fi
 
-if [ -d "$PROJECT" ]; then
-  rm -rf "$PROJECT"
+if [ -d "$ROOT" ]; then
+  rm -rf "$ROOT"
 fi
 
-mkdir $PROJECT
+mkdir $ROOT
 
-cd $PROJECT
+cd $ROOT
 
 cat <<EOL >CMakeLists.txt
 cmake_minimum_required(VERSION 3.21)
@@ -25,17 +25,14 @@ set(CMAKE_C_STANDARD_REQUIRED OFF)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED OFF)
 
-if(WIN32)
-  set(CMAKE_C_COMPILER clang-cl)
-  set(CMAKE_CXX_COMPILER clang-cl)
-else()
-  # set(CMAKE_C_COMPILER gcc)
-  set(CMAKE_C_COMPILER clang)
-  # set(CMAKE_CXX_COMPILER g++)
-  set(CMAKE_CXX_COMPILER clang++)
-endif()
+# set(CMAKE_C_COMPILER gcc)
+set(CMAKE_C_COMPILER clang)
+# set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_COMPILER clang++)
 
-project($PROJECT)
+set(CMAKE_BUILD_TYPE Debug)
+
+project($ROOT)
 
 add_executable(main ./src/main.hpp ./src/main.cpp)
 
@@ -83,4 +80,4 @@ mkdir build && cd build
 cmake .. -G Ninja && ninja
 ./main
 
-echo "Copyright https://161043261.github.io. All rights reserved."
+echo "@author https://161043261.github.io."
