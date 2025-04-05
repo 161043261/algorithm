@@ -34,13 +34,12 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project($ROOT)
 
-add_executable(main ./src/main.hpp ./src/main.cpp)
+add_executable(main ./src/main.cpp)
 
 find_program(CLANG_FORMAT clang-format)
 if(CLANG_FORMAT)
   add_custom_target(format ALL
     COMMAND \${CLANG_FORMAT} -i -style=google
-    \${CMAKE_SOURCE_DIR}/src/*.hpp
     \${CMAKE_SOURCE_DIR}/src/*.cpp
   )
 else()
@@ -50,34 +49,21 @@ EOL
 
 mkdir src
 
-cat <<EOL >src/main.hpp
-//
-// Created by $(whoami) on $(date +"%Y/%m/%d").
-//
-
-#ifndef MAIN_H
-#define MAIN_H
-
-#endif // MAIN_H
-EOL
-
 cat <<EOL >src/main.cpp
 //
 // Created by $(whoami) on $(date +"%Y/%m/%d").
 //
 
-#include "main.hpp"
 #include <iostream>
+#include <format>
 
 using namespace std;
 
 int main() {
-  cout << "Hello world" << endl;
+  cout << format("Hello {}!\n", "World");
 }
 EOL
 
 mkdir build && cd build
 cmake .. -G Ninja && ninja
 ./main
-
-echo "@author https://161043261.github.io."
