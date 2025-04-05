@@ -6,9 +6,9 @@
 
 // 推荐
 // package.json 中 "type": "module"
-// tsconfig.json 中 "module": "CommonJS"
-// extname === .ts
-const readline = require("node:readline");
+// tsconfig.json 中 "module": "ESNext"
+// extname === .cts
+import readline from "node:readline";
 
 const rl = readline.createInterface({
   input: process.stdin,
