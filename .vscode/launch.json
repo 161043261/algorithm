@@ -5,7 +5,7 @@
       "type": "lldb-dap",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceRoot}/build/239",
+      "program": "${workspaceRoot}/build/main",
       "args": [],
       "env": [],
       "cwd": "${workspaceRoot}",
