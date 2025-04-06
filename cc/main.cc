@@ -5,96 +5,60 @@
 #include <algorithm>
 #include <climits>
 #include <cmath>
-#include <deque>
-#include <format>
+// #include <deque>
+// #include <format>
 #include <functional>
 #include <iostream>
-#include <numeric>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+// #include <numeric>
+// #include <queue>
+// #include <stack>
+// #include <string>
+// #include <unordered_map>
+// #include <unordered_set>
 #include <vector>
 
 using namespace std;
 
 class Solution {
-public:
-  string decodeString(string s) {
-    auto cup = stack<string>{};
-    function<bool(string &)> isInt = [](string &str) -> bool {
-      try {
-        stoi(str);
-      } catch (exception &err) {
-        return false;
+ public:
+  int minArraySum(vector<int> &nums, int k, int op1, int op2) {
+    // auto key2ret = unordered_map<string, int>{};
+    vector memo(nums.size(), vector(op1 + 1, vector<int>(op2 + 1, -1)));
+    function<int(int, int, int)> dfs;
+    dfs = [&](auto idx, auto op1, auto op2) -> auto {
+      if (idx < 0) {
+        return 0;
       }
-      return true;
+      // auto key = format("{}-{}-{}", idx, op1, op2);
+      if (memo[idx][op1][op2] != -1) {
+        return memo[idx][op1][op2];
+      };
+
+      auto ret = dfs(idx - 1, op1, op2) + nums[idx];
+      if (op1 > 0 && op2 > 0 && nums[idx] >= k) {
+        ret =
+            min(ret, dfs(idx - 1, op1 - 1, op2 - 1) +
+                         ((nums[idx] + 1) / 2 >= k ? (nums[idx] + 1) / 2 - k
+                                                   : (nums[idx] - k + 1) / 2));
+      }
+      if (op1 > 0) {
+        ret = min(ret, dfs(idx - 1, op1 - 1, op2) + (nums[idx] + 1) / 2);
+      }
+      if (op2 > 0 && nums[idx] >= k) {
+        ret = min(ret, dfs(idx - 1, op1, op2 - 1) + nums[idx] - k);
+      }
+      /*key2ret.insert({ key, ret });*/
+      memo[idx][op1][op2] = ret;
+      return ret;
     };
 
-    for (const auto &ch : s) {
-      auto item = string{""};
-      if (ch == ']') {
-        item = cup.top();
-        cup.pop();
-        // cup.top() == '['
-        cup.pop();
-
-        auto repeat = cup.top();
-        cup.pop();
-
-        // cout << format("item: {}, repeat: {}", item, repeat) << endl;
-        auto repeatCnt = stoi(repeat);
-        auto repeatVec = vector<string>(repeatCnt, item);
-        auto repeatStr = string{""};
-        for_each(repeatVec.begin(), repeatVec.end(),
-                 [&repeatStr](const auto &str) { repeatStr += str; });
-        // cout << format("repeatStr: {}", repeatStr) << endl;
-
-        if (cup.empty()) {
-          cup.emplace(repeatStr);
-          // 不是整数, 不是 [, 则是字符串, append
-        } else if (!isInt(cup.top()) && cup.top() != "[") {
-          cup.top().append(repeatStr);
-        } else {
-          cup.emplace(repeatStr);
-        }
-        continue;
-      }
-
-      if (ch == '[') {
-        cup.emplace("[");
-        continue;
-      }
-
-      auto chStr = string{ch};
-      if (isInt(chStr)) {
-        if (cup.empty()) {
-          cup.emplace(chStr);
-          // 是整数, append
-        } else if (isInt(cup.top())) {
-          cup.top().append(chStr);
-        } else {
-          cup.emplace(chStr);
-        }
-        continue;
-      }
-
-      if (cup.empty()) {
-        cup.emplace(chStr);
-        // 不是整数, 不是 [, 则是字符串, append
-      } else if (!isInt(cup.top()) && cup.top() != "[") {
-        cup.top().append(chStr);
-      } else {
-        cup.emplace(chStr);
-      }
-    }
-    return cup.top();
-  };
+    return dfs(nums.size() - 1, op1, op2);
+  }
 };
 
 int main() {
-  auto testcase = Solution{};
-  auto res = testcase.decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef");
-  cout << format("res: {}", res) << endl;
+  auto nums = vector<int>{2, 8, 3, 19, 3};
+  auto test = Solution{};
+  auto ret = test.minArraySum(nums, 3, 1, 1);
+  cout << ret << endl;
 }
