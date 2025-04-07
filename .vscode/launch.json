@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/dist/index.js",
+      "program": "${workspaceFolder}/dist/quick_sort.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
@@ -14,7 +14,7 @@
       "type": "lldb-dap",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceRoot}/build/main",
+      "program": "${workspaceRoot}/build/heap",
       "args": [],
       "env": [],
       "cwd": "${workspaceRoot}",

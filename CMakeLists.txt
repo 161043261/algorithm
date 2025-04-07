@@ -24,8 +24,10 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(algorithm)
 
-add_executable(main "cc/main.cc")
-add_executable(dfs "cc/dfs.cc")
+add_executable(main cc/main.cc)
+add_executable(dfs cc/dfs.cc)
+add_executable(heap cc/heap.cc)
+add_executable(quick_sort cc/quick_sort.cc)
 
 find_program(CLANG_FORMAT clang-format)
 if(CLANG_FORMAT)

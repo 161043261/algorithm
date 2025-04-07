@@ -72,6 +72,7 @@ function minHeapify(nums: number[], idx: number, heapSize: number) {
   }
 }
 
+// e.g.
 function findKthMaximum(nums: number[], k: number): number {
   let heapSize = nums.length;
   buildMaxHeap(nums, heapSize);
@@ -89,6 +90,7 @@ function findKthMaximum(nums: number[], k: number): number {
   return nums[0];
 }
 
+// e.g.
 function findKthMinimum(nums: number[], k: number): number {
   let heapSize = nums.length;
   buildMinHeap(nums, heapSize);
@@ -139,7 +141,6 @@ function topKFrequent(nums: number[], k: number): number[] {
   }
 
   const heap = Array.from(num2cnt.entries());
-  console.log(heap);
   let heapSize = num2cnt.size;
   buildMaxHeap(heap, heapSize);
 

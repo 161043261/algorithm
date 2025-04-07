@@ -5,16 +5,17 @@
 #include <algorithm>
 #include <climits>
 #include <cmath>
-// #include <deque>
-// #include <format>
+#include <deque>
+#include <format>
 #include <functional>
 #include <iostream>
-// #include <numeric>
-// #include <queue>
-// #include <stack>
-// #include <string>
-// #include <unordered_map>
-// #include <unordered_set>
+#include <numeric>
+#include <queue>
+#include <stack>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>  // swap
 #include <vector>
 
 using namespace std;
