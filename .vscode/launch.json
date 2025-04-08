@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/dist/quick_sort.js",
+      "program": "${workspaceFolder}/dist/index.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
