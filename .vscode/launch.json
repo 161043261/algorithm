@@ -2,12 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/dist/index.js",
+      "name": "index.js",
+      "program": "${workspaceFolder}/src/index.js",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "main.ts",
+      "program": "${workspaceFolder}/dist/main.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
       "type": "node"
     },
     {
@@ -17,7 +22,7 @@
       "program": "${workspaceRoot}/build/heap",
       "args": [],
       "env": [],
-      "cwd": "${workspaceRoot}",
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
