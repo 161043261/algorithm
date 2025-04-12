@@ -13,7 +13,8 @@
       "program": "${workspaceFolder}/dist/main.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
-      "type": "node"
+      "type": "node",
+      "preLaunchTask": "npm: build"
     },
     {
       "type": "lldb-dap",
