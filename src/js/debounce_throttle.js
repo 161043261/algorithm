@@ -29,3 +29,5 @@ function throttle(fn, delay) {
     }, delay);
   };
 }
+
+export default {}

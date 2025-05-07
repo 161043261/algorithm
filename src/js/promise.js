@@ -94,3 +94,5 @@ new Promise_((resolve /* , reject */) => {
 // todo Promise.race
 
 // todo Promise.all
+
+export default {}

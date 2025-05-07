@@ -26,3 +26,5 @@ const boundFn = fn.bind(undefined, 1, 2, 3, 4);
 sleep(boundFn, 3000); // 10
 sleep2(boundFn, 6000); // 10
 sleep3(boundFn, 9000); // 10
+
+export default {}

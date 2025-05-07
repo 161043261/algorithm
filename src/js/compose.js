@@ -67,3 +67,5 @@ function asyncFn3(arg) {
 const asyncComposedFn2 = compose([asyncFn1, asyncFn2, asyncFn3]);
 // asyncFn1 -> asyncFn2 -> asyncFn3 -> 10
 asyncComposedFn2(4).then(console.log);
+
+export default {}

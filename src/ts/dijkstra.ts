@@ -1,4 +1,4 @@
-// Dijkstra
+// dijkstra
 
 // deno compile -A -o main ./solution.ts
 function networkDelayTime(times: number[][], n: number, k: number): number {

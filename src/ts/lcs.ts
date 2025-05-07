@@ -1,5 +1,3 @@
-// @ts-check
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function longestCommonSubsequence(text1: string, text2: string): number {
   const dp = Array.from({ length: text1.length + 1 }, () =>

@@ -19,3 +19,5 @@ function setInterval_(fn, delay) {
 let cnt = 0;
 const { clear } = setInterval_(() => console.log(cnt++), 1000);
 setTimeout(clear, 7000);
+
+export default {}

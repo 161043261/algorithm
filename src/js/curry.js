@@ -25,3 +25,5 @@ function fn(a, b, c, d) {
 
 const curryFn = curry(fn);
 console.log("curry", curryFn(1)(2)(3)(4)); // 10
+
+export default {}

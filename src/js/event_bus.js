@@ -55,3 +55,5 @@ class EventBus {
   publish = this.emit;
   unsubscribe = this.off;
 }
+
+export default {}

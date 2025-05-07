@@ -34,3 +34,4 @@ new Promise((resolve) => {
 console.log(9);
 
 // 0 2 3 5 6 9 1 7 8 4
+export default {}

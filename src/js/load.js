@@ -84,3 +84,5 @@ concurrent(
   ],
   2,
 ).then(console.log);
+
+export default {}

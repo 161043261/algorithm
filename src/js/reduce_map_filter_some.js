@@ -81,3 +81,5 @@ Array.prototype.some_ = function (fn) {
 
 const ret5 = arr.some_((item) => item > 3);
 console.log("some ret5", ret5); // true
+
+export default {}

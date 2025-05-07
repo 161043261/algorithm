@@ -18,3 +18,5 @@ function templateStr(str) {
 }
 
 console.log(templateStr(str));
+
+export default {}

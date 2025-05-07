@@ -16,3 +16,5 @@ function retry(fn, delay, cnt) {
     fn_();
   });
 }
+
+export default {}

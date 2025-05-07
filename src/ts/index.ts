@@ -7,7 +7,7 @@ function numEquivDominoPairs(dominoes: number[][]): number {
     kvs.set(key, (kvs.get(key) ?? 0) + 1);
   }
   let ans = 0;
-  for (const [key, val] of kvs.entries()) {
+  for (const [, val] of kvs.entries()) {
     ans += (val * (val - 1)) / 2;
   }
   return ans;

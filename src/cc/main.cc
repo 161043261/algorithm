@@ -18,19 +18,18 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <utility> // swap
+#include <utility>  // swap
 #include <vector>
 
 using namespace std;
 
 class Solution {
-public:
+ public:
   int myAtoi(string s) {
     auto b = s.begin();
     // cout << *(++b);
     // cout << *(--b);
-    for (; b != s.end() && *b == ' '; b++)
-      ;
+    for (; b != s.end() && *b == ' '; b++);
 
     auto isNeg = false;
     if (b + 1 != s.end() && (*b == '-' || *b == '+')) {
@@ -38,11 +37,9 @@ public:
       b++;
     }
 
-    for (; b != s.end() && *b == '0'; b++)
-      ;
+    for (; b != s.end() && *b == '0'; b++);
     auto e = b;
-    for (; *e >= '0' && *e <= '9' && e != s.end(); e++)
-      ;
+    for (; *e >= '0' && *e <= '9' && e != s.end(); e++);
     auto payload = string(b, e);
     cout << payload << endl;
     auto ans = 0;

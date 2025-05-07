@@ -10,3 +10,5 @@ function setTimeout_(fn, delay) {
 setTimeout_(() => {
   console.log("setTimeout_");
 }, 3000);
+
+export default {}

@@ -40,3 +40,5 @@ xhr.open(
   false /** async */,
 );
 xhr.send();
+
+export default {}
