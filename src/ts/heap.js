@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
