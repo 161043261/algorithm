@@ -1,24 +1,30 @@
 /**
- * @param {string[]} words
- * @return {number}
+ * @param {number} n
+ * @return {number[]}
  */
-var longestPalindrome = function (words) {
-  const cnt = Array.from({ length: 26 }, () => new Array(26).fill(0));
-  for (const word of words) {
-    cnt[word.charCodeAt(0) - "a".charCodeAt(0)][
-      word.charCodeAt(1) - "a".charCodeAt(0)
-    ]++;
-  }
+function grayCode(n) {
+  const ans = new Set([new Array(n).fill(0).join("")]);
 
-  let ans = 0;
-  let odd = 0;
-  for (let i = 0; i < 26; i++) {
-    const c = cnt[i][i];
-    ans += c - c % 2;
-    odd |= c % 2;
-    for (let j = i + 1; j < 26; j++) {
-      ans += Math.min(cnt[i][j], cnt[j][i]) * 2
+  /**
+   * @param {number[]} arr
+   */
+  const backtrack = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i] === 0 ? 1 : 0;
+      const item = arr.join("");
+      if (ans.has(item)) {
+        arr[i] = arr[i] === 0 ? 1 : 0;
+        continue;
+      }
+      ans.add(item);
+      backtrack(arr);
+      arr[i] = arr[i] === 0 ? 1 : 0;
     }
-  }
-  return (ans + odd) * 2
-};
+  };
+
+  backtrack(new Array(n).fill(0));
+  return Array.from(ans).map((item) => Number.parseInt(item, 2));
+}
+
+const ans = grayCode(3);
+console.log(ans);

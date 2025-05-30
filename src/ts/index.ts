@@ -1,30 +1,26 @@
-interface ListNode {
-  next: ListNode | null;
-  val: number;
+function numDecodings(s: string): number {
+  const cache = new Array<number>(s.length).fill(-1);
+  const bfs = (idx: number): number => {
+    if (s[idx] === "0") {
+      return 0;
+    }
+    if (idx >= s.length - 1) {
+      return 1;
+    }
+    if (cache[idx] !== -1) {
+      return cache[idx];
+    }
+    let ret = 0;
+    if (Number.parseInt(s[idx] + s[idx + 1]) <= 26) {
+      ret = bfs(idx + 1) + bfs(idx + 2);
+    } else {
+      ret = bfs(idx + 1);
+    }
+    cache[idx] = ret;
+    return ret;
+  };
+  return bfs(0);
 }
 
-function partition(head: ListNode | null, x: number): ListNode | null {
-  const lt: ListNode = { next: null, val: 0 };
-  let ltt = lt;
-  const gt: ListNode = { next: null, val: 0 };
-  let gtt = gt;
-  for (
-    let pre: ListNode | null = null, p = head;
-    p !== null;
-    pre = p, p = p.next
-  ) {
-    if (pre) {
-      pre.next = null;
-    }
-    if (p.val < x) {
-      ltt.next = p;
-      ltt = p;
-    } else {
-      gtt.next = p;
-      gtt = p;
-    }
-  }
-  ltt.next = gt.next;
-  gtt.next = null;
-  return lt.next;
-}
+const ans = numDecodings("111111111111111111111111111111111111111111111");
+console.log(ans);
