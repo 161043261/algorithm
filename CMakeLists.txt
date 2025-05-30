@@ -8,8 +8,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   set(CMAKE_C_COMPILER clang)
   set(CMAKE_CXX_COMPILER clang++)
 else()
-  set(CMAKE_C_COMPILER gcc)
-  set(CMAKE_CXX_COMPILER g++)
+  set(CMAKE_C_COMPILER clang-cl)
+  set(CMAKE_CXX_COMPILER clang-cl)
 endif()
 
 # Debug
