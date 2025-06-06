@@ -20,7 +20,7 @@ type element[T any] struct {
 func (ctx *List[T]) Push(v T) {
 	if ctx.tail == nil {
 		ctx.head = &element[T]{val: v}
-    ctx.tail = ctx.head
+		ctx.tail = ctx.head
 	} else {
 		ctx.tail.next = &element[T]{val: v}
 		ctx.tail = ctx.tail.next
@@ -31,7 +31,7 @@ func (ctx *List[T]) Push(v T) {
 func (ctx *List[T]) generatorFunction() iter.Seq[T] {
 	return func(yield func(T) bool) {
 		for e := ctx.head; e != nil; e = e.next {
-			if !yield(e.val) {
+			if !yield /* main.main-range1 */ (e.val) {
 				// yield(e.val) == false
 				return
 			}
@@ -39,12 +39,12 @@ func (ctx *List[T]) generatorFunction() iter.Seq[T] {
 	}
 }
 
-func seqFunc() iter.Seq[int] {
+func generatorFunction2() iter.Seq[int] {
 	return func(yield func(int) bool) {
 		a, b := 1, 1
 		for {
-			if !yield(a) {
-        // yield(a) == false
+			if !yield /* main.main-range2 */ (a) {
+				// yield(a) == false
 				return
 			}
 			a, b = b, a+b
@@ -59,18 +59,24 @@ func main() {
 	list.Push(3)
 
 	generator := list.generatorFunction()
+
+	// main.main-range1 start
 	for item := range generator {
 		fmt.Println(item)
 	}
+	// main.main-range1 end
 
-	sequence := slices.Collect(generator)
-	fmt.Println("sequence:", sequence)
+	s1 := slices.Collect(generator)
+	fmt.Println("s1:", s1)
 
-	seq := seqFunc()
-	for item := range seq {
+	generator2 := generatorFunction2()
+
+	// main.main-range2 start
+	for item := range generator2 {
 		if item >= 10 {
 			break
 		}
 		fmt.Println(item)
 	}
+	// main.main-range1 end
 }

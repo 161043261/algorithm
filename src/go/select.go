@@ -22,6 +22,7 @@ func main() {
 		ch2 <- "Two"
 	}()
 
+  //! 每轮只 select 一个 case
 	for range 2 {
 		select {
 		case msg1 := <-ch1:
@@ -30,4 +31,6 @@ func main() {
 			fmt.Println("msg2:", msg2)
 		}
 	}
+  // msg1: One
+  // msg2: Two
 }
