@@ -1,4 +1,4 @@
-.PHONY: push degit gobuild clean
+.PHONY: push degit gobuild clean gcc clang
 
 push:
 	git add -A
@@ -38,6 +38,7 @@ gobuild:
 	go build -tags enum                   -o ./target/enum                   ./src/go/enum.go
 	go build -tags structEmbedding        -o ./target/structEmbedding        ./src/go/structEmbedding.go
 	go build -tags generic                -o ./target/generic                ./src/go/generic.go
+	go build -tags rangeOverIterator      -o ./target/rangeOverIterator      ./src/go/rangeOverIterator.go
 	go build -tags error                  -o ./target/error                  ./src/go/error.go
 	go build -tags customError            -o ./target/customError            ./src/go/customError.go
 	go build -tags goroutine              -o ./target/goroutine              ./src/go/goroutine.go
@@ -45,6 +46,7 @@ gobuild:
 	go build -tags channelBuffering       -o ./target/channelBuffering       ./src/go/channelBuffering.go
 	go build -tags channelSynchronization -o ./target/channelSynchronization ./src/go/channelSynchronization.go
 	go build -tags channelDirection       -o ./target/channelDirection       ./src/go/channelDirection.go
+	go build -tags select                 -o ./target/select                 ./src/go/select.go
 
 clean:
 	rm -rf ./build ./dist ./out ./target ./lib
