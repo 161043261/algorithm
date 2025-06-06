@@ -1,0 +1,16 @@
+**/.vs/
+**/.idea/
+**/.DS_Store
+**/target/
+**/node_modules/
+**/build/
+**/dist/
+*.mp3
+*.mp4
+**/*.tar.gz
+**/*.tar
+**/.zip
+**/__cache__/
+.cache/
+lib/
+**/out/
