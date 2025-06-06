@@ -18,7 +18,7 @@ func main() {
 	var waitGroup sync.WaitGroup
 
 	for i := range 5 {
-		waitGroup.Add(1)
+		waitGroup.Add(1) // 主协程中, 等待组 +1
 
 		go func() {
 			defer waitGroup.Done()

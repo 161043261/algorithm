@@ -57,6 +57,8 @@ gobuild:
 	go build -tags waitGroup                   -o ./target/waitGroup                   ./src/go/waitGroup.go
 	go build -tags rateLimiting                -o ./target/rateLimiting                ./src/go/rateLimiting.go
 	go build -tags atomicCounter               -o ./target/atomicCounter               ./src/go/atomicCounter.go
+	go build -tags mutex                       -o ./target/mutex                       ./src/go/mutex.go
+	go build -tags statefulGoroutine           -o ./target/statefulGoroutine           ./src/go/statefulGoroutine.go
 
 clean:
 	rm -rf ./build ./dist ./out ./target ./lib
