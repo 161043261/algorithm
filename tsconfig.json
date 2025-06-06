@@ -15,10 +15,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "eslint.config.mjs",
-    "build"
-  ],
+  "include": ["src/main.ts"],
+  "exclude": ["build", "dist", "eslint.config.mjs", "node_modules"]
 }
