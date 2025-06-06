@@ -1,7 +1,5 @@
 # Algorithm
 
-## Go by Example
-
 [Go by Example](./src/go/README.md)
 
 ```sh

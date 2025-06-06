@@ -51,6 +51,12 @@ gobuild:
 	go build -tags nonBlockingChannelOperation -o ./target/nonBlockingChannelOperation ./src/go/nonBlockingChannelOperation.go
 	go build -tags closingChannel              -o ./target/closingChannel              ./src/go/closingChannel.go
 	go build -tags rangeOverChannel            -o ./target/rangeOverChannel            ./src/go/rangeOverChannel.go
+	go build -tags timer                       -o ./target/timer                       ./src/go/timer.go
+	go build -tags ticker                      -o ./target/ticker                      ./src/go/ticker.go
+	go build -tags workerPool                  -o ./target/workerPool                  ./src/go/workerPool.go
+	go build -tags waitGroup                   -o ./target/waitGroup                   ./src/go/waitGroup.go
+	go build -tags rateLimiting                -o ./target/rateLimiting                ./src/go/rateLimiting.go
+	go build -tags atomicCounter               -o ./target/atomicCounter               ./src/go/atomicCounter.go
 
 clean:
 	rm -rf ./build ./dist ./out ./target ./lib
