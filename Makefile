@@ -64,6 +64,14 @@ gobuild:
 	go build -tags panic                       -o ./target/panic                       ./src/go/panic.go
 	go build -tags defer                       -o ./target/defer                       ./src/go/defer.go
 	go build -tags recover                     -o ./target/recover                     ./src/go/recover.go
+	go build -tags logging                     -o ./target/logging                     ./src/go/logging.go
+	go build -tags httpClient                  -o ./target/httpClient                  ./src/go/httpClient.go
+	go build -tags httpServer                  -o ./target/httpServer                  ./src/go/httpServer.go
+	go build -tags context                     -o ./target/context                     ./src/go/context.go
+	go build -tags spawningProcess             -o ./target/spawningProcess             ./src/go/spawningProcess.go
+	go build -tags executingProcess            -o ./target/executingProcess            ./src/go/executingProcess.go
+	go build -tags signal                      -o ./target/signal                      ./src/go/signal.go
+	go build -tags exit                        -o ./target/exit                        ./src/go/exit.go
 
 clean:
 	rm -rf ./build ./dist ./out ./target ./lib
