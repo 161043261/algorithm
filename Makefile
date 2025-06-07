@@ -59,6 +59,11 @@ gobuild:
 	go build -tags atomicCounter               -o ./target/atomicCounter               ./src/go/atomicCounter.go
 	go build -tags mutex                       -o ./target/mutex                       ./src/go/mutex.go
 	go build -tags statefulGoroutine           -o ./target/statefulGoroutine           ./src/go/statefulGoroutine.go
+	go build -tags sorting                     -o ./target/sorting                     ./src/go/sorting.go
+	go build -tags sortingByFunction           -o ./target/sortingByFunction           ./src/go/sortingByFunction.go
+	go build -tags panic                       -o ./target/panic                       ./src/go/panic.go
+	go build -tags defer                       -o ./target/defer                       ./src/go/defer.go
+	go build -tags recover                     -o ./target/recover                     ./src/go/recover.go
 
 clean:
 	rm -rf ./build ./dist ./out ./target ./lib

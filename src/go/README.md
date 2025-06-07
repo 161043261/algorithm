@@ -48,7 +48,7 @@
 - [Panic](./panic.go)
 - [Defer](./defer.go)
 - [Recover](./recover.go)
-- [String Function](./stringFunction.go)
+- [String Function](./stringFunction.go) <<< Undo start
 - [String Formatting](./stingFormatting.go)
 - [Text Template](./textTemplate.go)
 - [Regular Expression](./regularExpression.go)
@@ -71,7 +71,7 @@
 - [Command-Line Argument](./commandLineArgument.go)
 - [Command-Line Flag](./commandLineFlag.go)
 - [Command-Line Subcommand](./commandLineSubcommand.go)
-- [Environment Variable](./enviromentVariable.go)
+- [Environment Variable](./enviromentVariable.go) >>> Undo end
 - [Logging](./logging.go)
 - [HTTP Client](./httpClient.go)
 - [HTTP Server](./httpServer.go)
