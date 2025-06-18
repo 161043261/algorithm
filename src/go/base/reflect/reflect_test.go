@@ -73,8 +73,8 @@ func TestReflect_reflectSetValue(t *testing.T) {
 }
 
 type User struct {
-	Name string `json:"name" db:"user_name"`
-	Age  int    `json:"age" db:"user_age"`
+	Name string `json:"name_json" db:"name_db"`
+	Age  int    `json:"age_json"  db:"age_db"`
 }
 
 // 接收者是指针类型
@@ -87,8 +87,8 @@ func (u User) NewUser(name string, age int) User {
 	return User{name, age}
 }
 
-func TestReflect_reflectVisit(t *testing.T) {
-	reflectVisit := func(val any) {
+func TestReflect_reflectGetFieldAndMethod(t *testing.T) {
+	reflectFieldAndMethod := func(val any) {
 		t := reflect.TypeOf(val)
 		fmt.Println("Type:", t)
 		fmt.Println("Type name:", t.Name())
@@ -111,7 +111,7 @@ func TestReflect_reflectVisit(t *testing.T) {
 	}
 
 	u := User{"whoami", 22}
-	reflectVisit(u)
+	reflectFieldAndMethod(u)
 	// Type: reflect_test.User
 	// Type name: User
 	// Value: {whoami 22}
@@ -120,6 +120,22 @@ func TestReflect_reflectVisit(t *testing.T) {
 	// Name: Age, Type: int, Value: 22
 	// ========== Methods ==========
 	// Name: NewUser, Type: func(reflect_test.User, string, int) reflect_test.User
+}
+
+type Man struct {
+	User
+	gender string
+}
+
+func TestReflect_reflectGetEmbed(_t *testing.T) {
+	man := Man{User{"whoami", 23}, "male"}
+	t := reflect.TypeOf(man)
+	fmt.Println(t)
+
+	for i := range t.NumField() {
+		fmt.Printf("%#v\n", t.Field(i))
+		fmt.Printf("%#v\n", reflect.ValueOf(man).Field(i))
+	}
 }
 
 func TestReflect_reflectSetField(t *testing.T) {
@@ -195,4 +211,22 @@ func TestReflect_reflectCallMethod(t *testing.T) {
 	nu2 := reflectCallMethod2(&u)
 	fmt.Printf("%+v\n", u2)  // {Name:whoami Age:22}
 	fmt.Printf("%+v\n", nu2) // &{Name:NewName Age:23}
+}
+
+func TestReflect_reflectTag(_t *testing.T) {
+	var u User
+	v := reflect.ValueOf(u)
+	p := reflect.ValueOf(&u)
+
+	t1 := v.Type()
+	t2 := p.Type()
+
+	fmt.Println(t1, t2) // reflect_test.User *reflect_test.User
+
+	for i := range v.NumField() {
+		f1 := t1.Field(i)
+		f2 := t2.Elem().Field(i)
+		fmt.Println("tag `json`:", f1.Tag.Get("json"), f2.Tag.Get("json"))
+		fmt.Println("tag `db`:", f1.Tag.Get("db"), f2.Tag.Get("db"))
+	}
 }
