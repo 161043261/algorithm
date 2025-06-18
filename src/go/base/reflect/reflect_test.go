@@ -71,14 +71,3 @@ func TestReflect3(t *testing.T) {
 	reflectSetValue(&x)
 	fmt.Println("x =", x) // x = 5.28
 }
-
-func TestReflect4(t *testing.T) {
-
-	type User struct {
-		Id   int
-		Name string
-		Age  int
-	}
-
-	// TODO Uncompleted
-}
