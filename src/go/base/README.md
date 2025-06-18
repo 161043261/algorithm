@@ -1,0 +1,115 @@
+# Go base
+
+## format
+
+```bash
+gofmt -w .
+```
+
+## 基础
+
+### init 函数和 main 函数
+
+- 一个包可以有多个 init 函数
+- 一个文件也可以有多个 init 函数
+- main 函数只能放在 main 包中
+- 一个 main 包只能有一个 main 函数, 除非使用 build tag
+
+### 下划线
+
+```go
+// 不直接使用 effect 包, 仅执行 effect 包中的 init 函数
+import _ "github.com/tianchenghang/effect"
+```
+
+### iota
+
+```go
+const (
+	m1 = iota // 0
+	m2        // 1
+	_         // 跳过
+	m4        // 3
+)
+
+const (
+	n1 = iota // 0
+	n2 = 100  // 100
+	n3 = iota // 2
+	n4        // 3
+)
+
+const (
+	_  = iota
+	KB = 1 << (10 * iota) // 1024
+	MB
+)
+
+const (
+	a, b = iota + 1, iota + 2 // 1       2
+	_, d                      // 2(跳过) 3
+	e, _                      // 3       4(跳过)
+)
+```
+
+## chan & go
+
+- [runtime](./runtime/runtime_test.go)
+- [chan](./chan/README.md)
+- sync
+  - [sync.Mutex](./sync/mutex_test.go)
+  - [sync.RWMutex](./sync/rwMutex_test.go)
+  - sync.WaitGroup: `wg.Add(1)` `defer wg.Done()` `wg.Wait()`
+  - sync.Once
+  - [sync.Map](./sync/map_test.go)
+  - [sync.Pool](./sync/gopool/README.md)
+- [atomic](./atomic/atomic_test.go)
+  - `LoadT` 存
+  - `StoreT` 取
+  - `AddT` 加
+  - `SwapT` 交换
+  - `CompareAndSwapT` 比较并交换
+
+## context
+
+```go
+type Context interface {
+  // Deadline() 返回工作的超时时间
+  Deadline() (deadline time.Time, ok bool)
+  // Done() 返回一个 done 通道, 工作完成、超时或取消后, done 通道关闭
+  // 读未关闭的、空的无缓冲 chan: 阻塞
+  // 读关闭的、空的无缓冲 chan: 返回零值和 false
+  Done() <-chan struct{}
+  // Err() 返回错误
+  // 超时: context deadline exceeded
+  // 取消: context canceled
+  Err() error
+  // Value() 返回键对应的值
+  Value(key any) any
+}
+```
+
+### context.Background()
+
+创建一个根 context
+
+### context.WithCancel()
+
+创建一个可取消的 context
+
+```go
+ctx, cancel := context.WithCancel(context.Background())
+defer cancel()
+```
+
+### context.WithDeadline()
+
+创建一个有超时, 可取消的 context
+
+```go
+deadline := time.Now().Add(3* time.Second)
+ctx, cancel := context.WithDeadline(context.Background(), deadline)
+defer cancel()
+```
+
+## reflect
