@@ -6,7 +6,6 @@ import (
 )
 
 type User struct {
-	Id   int
 	Name string
 	Age  int
 }
@@ -34,9 +33,8 @@ func (u *User) GetAge() (age int) {
 
 func TestMethod(t *testing.T) {
 
-	u := User{1, "user", 22}
+	u := User{"user", 22}
 	up := &User{
-		Id:   1,
 		Name: "userPtr",
 		Age:  23,
 	}
