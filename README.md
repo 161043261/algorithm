@@ -1,6 +1,6 @@
 # Algorithm
 
-[Go by Example](./src/go/README.md)
+[Go by Example](./src/go/example/README.md)
 
 ```sh
 # 查看本地分支

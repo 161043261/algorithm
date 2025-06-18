@@ -59,10 +59,10 @@ init: ## Initial commit
 
 .PHONY: build
 build: ## Go build
-	rm -rf ./target && mkdir ./target ./src/go/dir
-	echo "hello go" > ./src/go/dir/file.txt
-	echo "123"      > ./src/go/dir/file1.hash
-	echo "456"      > ./src/go/dir/file2.hash
+	rm -rf ./target && mkdir ./target ./src/go/example/dir
+	echo "hello go" > ./src/go/example/dir/file.txt
+	echo "123"      > ./src/go/example/dir/file1.hash
+	echo "456"      > ./src/go/example/dir/file2.hash
 	for file in $$(find ./src/go -name '*.go'); do    \
 		name=$$(basename $$file .go);                   \
 		case $$name in                                  \
@@ -71,7 +71,7 @@ build: ## Go build
 		tag=$$(basename $$file .go);                    \
 		go build -tags $$tag -o ./target/$$name $$file; \
 	done
-	rm -rf ./src/go/dir
+	rm -rf ./src/go/example/dir
 
 .PHONY: clean
 clean: ## Remove ./build ./dist ./out ./target ./lib
@@ -92,11 +92,11 @@ build3: ## Cmake build: CC=clang CXX=clang++
 	CC=clang CXX=clang++ cmake -S ./ -B ./build
 	cmake --build ./build
 
-.PHONY: cp
-cp: ## Copy to ./gobyexample-optimize
-	cp ./src/go/*.go      ./gobyexample-optimize/src/
-	cp ./src/go/README.md ./gobyexample-optimize/
-	cp ./Makefile         ./gobyexample-optimize
+.PHONY: format
+format: ## Format code
+	prettier --write ./ # JavaScript, TypeScript, Markdown
+	gofmt -w ./src/go/
+	find ./src/cc -type f \( -name "*.cc" -o -name "*.h" -o -name "*.hh" \) -exec clang-format -i {} +
 
 .PHONY: help
 help:
