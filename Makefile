@@ -96,7 +96,10 @@ build3: ## Cmake build: CC=clang CXX=clang++
 format: ## Format code
 	prettier --write ./ # JavaScript, TypeScript, Markdown
 	gofmt -w ./src/go/
-	find ./src/cc -type f \( -name "*.cc" -o -name "*.h" -o -name "*.hh" \) -exec clang-format -i {} +
+	@find ./src/cc/ -type f \(                                         \
+		-name "*.c" -o -name "*.cc" -o -name "*.cpp" -o -name "*.cxx"    \
+	  -o -name "*.h" -o -name "*.hh" -o -name "*.hpp" -o -name "*.hxx" \
+  \) -exec clang-format -i {} +
 
 .PHONY: help
 help:
