@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 function xhrReplace() {
   if (!("XMLHttpRequest" in window)) {
     return;
@@ -189,7 +190,7 @@ function getResourceList() {
     (entry.transferSize !== 0 && entry.encodedBodySize === 0);
   const entries = performance.getEntriesByType("resource");
   // 过滤非静态资源的 beacon, fetch, xmlhttprequest
-  const list = entries.filter(
+  let list = entries.filter(
     (entry) =>
       !["beacon", "fetch", "xmlhttprequest"].includes(entry.initiatorType),
   );

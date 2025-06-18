@@ -5,13 +5,13 @@ function myNew() {
   console.log(arguments); // [Arguments] { '0': 'Automatic', '1': 22 }
   obj.__proto__ = constructor.prototype;
   const ret = constructor.apply(obj, arguments);
-  return typeof ret === "object" && result !== null ? ret : obj;
+  return typeof ret === "object" && ret !== null ? ret : obj;
 }
 
 function myNew2(constructor, ...args) {
   const obj = Object.create(constructor.prototype);
   const ret = constructor.apply(obj /** this */, args);
-  return typeof ret === "object" && result !== null ? ret : obj;
+  return typeof ret === "object" && ret !== null ? ret : obj;
 }
 
 function Demo(name, age) {
