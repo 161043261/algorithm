@@ -12,4 +12,3 @@ connection.addEventListener("change", () => {
     connection.rtt,
   );
 });
-
