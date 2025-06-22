@@ -19,6 +19,6 @@ project(algorithm)
 add_executable(main src/main.cc)
 add_executable(dfs src/cc/dfs.cc)
 add_executable(heap src/cc/heap.cc)
-add_executable(quick_sort src/cc/quick_sort.cc)
+add_executable(quick_sort src/cc/quicksort.cc)
 
 add_custom_target(format ALL COMMAND clang-format -i -style=google ${CMAKE_SOURCE_DIR}/src/cc/*.cc)
