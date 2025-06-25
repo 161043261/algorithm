@@ -1,4 +1,5 @@
 //go:build main
+
 package main
 
 func divideString(s string, k int, fill byte) []string {
