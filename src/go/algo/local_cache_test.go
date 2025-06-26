@@ -7,7 +7,9 @@ import (
 	"io.github.tianchenghang/algorithm/src/go/algo"
 )
 
-func testMany(t *testing.T, c algo.Cache[int]) {
+func TestManyLocalCache(t *testing.T) {
+	c := algo.NewLocalCache[int](10)
+
 	const (
 		k  = 1
 		v1 = 2
@@ -16,7 +18,6 @@ func testMany(t *testing.T, c algo.Cache[int]) {
 	if c.Len() != 0 {
 		t.Error("c.Len() != 0")
 	}
-
 	v, ok := c.Get(k)
 	if v != nil {
 		t.Error("v != nil")
@@ -26,13 +27,11 @@ func testMany(t *testing.T, c algo.Cache[int]) {
 		t.Error("ok == true")
 	}
 
-	c.Add(k, v1, time.Now().Add(time.Hour))
-
+	c.AddWithDeadline(k, v1, time.Now().Add(time.Hour))
 	v, ok = c.Get(k)
-	if v == nil {
-		t.Error("v == nil")
+	if v.(int) == 0 {
+		t.Error("v == 0")
 	}
-
 	if !ok {
 		t.Error("ok == false")
 	}
@@ -41,10 +40,9 @@ func testMany(t *testing.T, c algo.Cache[int]) {
 		t.Error("c.Len() != 1")
 	}
 
-	c.Add(k, v2, time.Now().Add(time.Hour))
-
+	c.AddWithDeadline(k, v2, time.Now().Add(time.Hour))
 	v, ok = c.Get(k)
-	if v.(int) != v2 {
+	if v != v2 {
 		t.Error("v != v2")
 	}
 	if !ok {
@@ -55,38 +53,22 @@ func testMany(t *testing.T, c algo.Cache[int]) {
 	}
 }
 
-func TestManyUnlocked(t *testing.T) {
-	testMany(t, algo.NewUnlocked[int](10))
-}
-
-func TestManyLocked(t *testing.T) {
-	testMany(t, algo.NewLocked[int](10))
-}
-
-func TestZeroSizeUnlocked(t *testing.T) {
+func TestZeroSizeLocalCache(t *testing.T) {
 	defer func() {
 		if r := recover(); r == nil {
 			t.Error("r == nil")
 		}
 	}()
-	_ = algo.NewUnlocked[any](0)
+
+	_ = algo.NewLocalCache[struct{}](0)
 }
 
-func TestZeroSizeLocked(t *testing.T) {
-	defer func() {
-		if r := recover(); r == nil {
-			t.Error("r == nil")
-		}
-	}()
-	_ = algo.NewLocked[any](0)
-}
-
-func TestCacheSize(t *testing.T) {
-	c := algo.NewUnlocked[int](2)
+func TestLocalCacheSize(t *testing.T) {
+	c := algo.NewLocalCache[int](2)
 	deadline := time.Now().Add(time.Hour)
-	c.Add(1, 1, deadline)
-	c.Add(2, 2, deadline)
-	c.Add(3, 3, deadline)
+	c.AddWithDeadline(1, 1, deadline)
+	c.AddWithDeadline(2, 2, deadline)
+	c.AddWithDeadline(3, 3, deadline)
 	if c.Len() != 2 {
 		t.Error("c.Len() != 2")
 	}
@@ -96,10 +78,10 @@ func TestCacheSize(t *testing.T) {
 	}
 }
 
-func TestCacheDeadline(t *testing.T) {
-	c := algo.NewUnlocked[int](2)
+func TestLocalCacheDeadline(t *testing.T) {
+	c := algo.NewLocalCache[int](2)
 	deadline := time.Now().Add(-time.Hour)
-	c.Add(1, 1, deadline)
+	c.AddWithDeadline(1, 1, deadline)
 	if c.Len() != 1 {
 		t.Error("c.Len() != 1")
 	}

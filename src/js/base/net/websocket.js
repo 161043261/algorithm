@@ -1,5 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ws from "ws";
 
 const wss = new ws.Server({ port: 8080 });
@@ -21,7 +19,7 @@ wss.on("connection", (ws) => {
       );
     });
   });
-  let timerId: any;
+  let timerId;
   const sendHeart = () => {
     if (ws.readyState === ws.OPEN) {
       ws.send(

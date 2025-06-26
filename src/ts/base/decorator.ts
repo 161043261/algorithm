@@ -5,7 +5,7 @@ const cache: () => MethodDecorator = () => {
   const args2returnVal = new Map<string, any>();
   return (target, propertyKey, descriptor: any) => {
     const originalMethod: any = descriptor.value;
-    descriptor.value = function (...args) {
+    descriptor.value = function (...args: unknown[]) {
       // 使用 JSON.stringify 将参数数组转换为字符串
       const argsStr = JSON.stringify(args);
       if (args2returnVal.has(argsStr)) {
