@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "go",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${file}"
+    },
+    {
+      "name": "js",
+      "program": "${workspaceFolder}/${relativeFileDirname}/${fileBasenameNoExtension}.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
+      "name": "src/*.ts",
+      "program": "${workspaceFolder}/dist/${fileBasenameNoExtension}.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+      // "preLaunchTask": "npm build"
+    },
+    {
+      "name": "src/ts/*.ts",
+      "program": "${workspaceFolder}/dist/${fileBasenameNoExtension}.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+      // "preLaunchTask": "npm build"
+    },
+    {
+      "type": "lldb-dap",
+      "request": "launch",
+      "name": "src/cc/*.cc",
+      "program": "${workspaceRoot}/build/${fileBasenameNoExtension}",
+      "cwd": "${workspaceRoot}"
+    }
+  ]
+}
