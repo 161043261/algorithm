@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "group": "build",
+      "label": "build",
+      "problemMatcher": [],
+      "script": "build",
+      "type": "npm"
+    }
+  ],
+  "version": "2.0.0"
+}
