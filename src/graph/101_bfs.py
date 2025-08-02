@@ -2,7 +2,6 @@
 # 某节点加入队列时, 立即标记该节点已访问
 from typing import List, Tuple
 
-
 ans: int = 0
 
 step: List[List[int]] = [[0, 1], [1, 0], [0, -1], [-1, 0]]  # y, x
