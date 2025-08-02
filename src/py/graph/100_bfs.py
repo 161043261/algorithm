@@ -1,6 +1,6 @@
 # bfs 需要队列
 # 某节点加入队列时, 立即标记该节点已访问
-from typing import Callable, List, Tuple
+from typing import List, Tuple
 
 
 ans: int = 0

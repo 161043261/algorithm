@@ -126,7 +126,7 @@
   "terminal.integrated.fontSize": 16,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vite.autoStart": true,
-  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.colorTheme": "Night Owl Light",
   "workbench.editor.wrapTabs": true,
   "workbench.iconTheme": "catppuccin-latte",
   "workbench.list.smoothScrolling": true
