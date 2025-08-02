@@ -1,0 +1,34 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "Some algorithms implemented by JS/TS/C++/Python",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write ./src",
+    "lint": "eslint --fix ./src",
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.24.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.0"
+  },
+  "type": "module",
+  "lint-staged": {
+    "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
+      "pnpm format"
+    ]
+  }
+}
