@@ -1,0 +1,2 @@
+class SegTree:
+    length: int

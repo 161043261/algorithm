@@ -1,0 +1,14 @@
+[project]
+dependencies = []
+description = "Some algorithms implemented by JS/TS/C++/Python"
+name = "algorithm"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"
+
+[dependency-groups]
+dev = [
+  "black>=25.1.0",
+  "mypy>=1.17.0",
+  "ruff>=0.12.5",
+]
