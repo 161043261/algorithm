@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void quicksort(vector<int> &nums, const int left, const int right) {
+void quickSort(vector<int> &nums, const int left, const int right) {
   if (left >= right) {
     return;
   }
@@ -27,13 +27,13 @@ void quicksort(vector<int> &nums, const int left, const int right) {
   };
 
   auto divider = partition();
-  quicksort(nums, left, divider - 1);
-  quicksort(nums, divider + 1, right);
+  quickSort(nums, left, divider - 1);
+  quickSort(nums, divider + 1, right);
 }
 
 int main() {
   auto nums = vector<int>{3, 4, 1, 5, 2};
-  quicksort(nums, 0, nums.size() - 1);
+  quickSort(nums, 0, nums.size() - 1);
   for_each(nums.begin(), nums.end(),
            [](const auto &item) { cout << format("{} ", item); });
 }
