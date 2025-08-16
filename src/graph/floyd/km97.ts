@@ -1,9 +1,9 @@
 import { createInterface } from "readline";
 
-let vertexNum: number = 0; // 1
-let edgeNum: number = 0; // 1
+let vertexNum = 0; // 1
+let edgeNum = 0; // 1
 let grid: number[][]; // 2 ~ 1 + edgeNum
-let taskNum: number = 0; // 2 + edgeNum
+let taskNum = 0; // 2 + edgeNum
 const taskList: [start: number, end: number][] = []; // 3 + edgeNum ~ 2 + edgeNum + taskNum
 
 // ====================

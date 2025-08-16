@@ -15,20 +15,21 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "devDependencies": {
-    "@eslint/js": "^9.24.0",
-    "@types/node": "^22.14.0",
-    "eslint": "^9.24.0",
+    "@eslint/js": "^9.33.0",
+    "@types/node": "^22.17.2",
+    "eslint": "^9.33.0",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.29.0"
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.1"
   },
   "type": "module",
   "lint-staged": {
     "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
-      "pnpm format"
+      "pnpm format",
+      "pnpm lint"
     ],
     "*.py": [
       "uv run black ./src"

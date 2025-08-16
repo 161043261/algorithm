@@ -1,29 +1,47 @@
-function myNew(constructor_, ...args) {
-  const obj = Object.create(constructor_.prototype);
-  const ret = constructor_.apply(obj /** this */, args);
-  return typeof ret === "object" && ret !== null ? ret : obj;
-}
+const promiseInst = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const rand = Math.random();
+    console.log("rand:", rand.toFixed(2));
 
-function Demo(name, age) {
-  this.name = name;
-  this.age = age;
-  this.say = function () {
-    console.log(this.name, this.age);
-  };
-}
+    if (rand > 0.5) {
+      resolve("Let's fall in love");
+    } else {
+      reject("You're a good person");
+    }
+  }, 3000);
+});
 
-Demo.prototype.name2 = "aaa";
-Demo.prototype.age2 = 22;
-Demo.prototype.say2 = function () {
-  console.log(this.__proto__.name2, this.__proto__.age2);
-};
+promiseInst.then(
+  // onFulfilled
+  (value) => {
+    console.log("[onFulfilled] value:", value);
+  },
 
-const demo = myNew(Demo /** constructor_ */, "bbb" /** name */, 23 /** age */);
-console.log(demo.name, demo.name2); // aaa bbb
-console.log(demo.age, demo.age2); // 22 23
-demo.say(); // aaa 22
-demo.say2(); // bbb 23
+  // onRejected
+  (reason) => {
+    console.log("[onRejected] reason:", reason);
+  },
+);
 
-Demo.prototype.name2 = "ccc";
-Demo.prototype.age2 = 24;
-demo.say2(); // ccc 24
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const rand = Math.random();
+    console.log("rand:", rand.toFixed(2));
+
+    if (rand > 0.5) {
+      resolve("Let's fall in love");
+    } else {
+      reject("You're a good person");
+    }
+  }, 3000);
+})
+
+  // onFulfilled
+  .then((value) => {
+    console.log("[onFulfilled] value:", value);
+  })
+
+  // onRejected
+  .catch((reason) => {
+    console.log("[onRejected] reason:", reason);
+  });

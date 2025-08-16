@@ -65,10 +65,10 @@ function rico() {
 
     const dst = edges.get(head);
     if (dst) {
-      for (let i = 0; i < dst.length; i++) {
-        inDegree[dst[i]]--;
-        if (inDegree[dst[i]] === 0) {
-          idxQueue.push(dst[i]);
+      for (const item of dst) {
+        inDegree[item]--;
+        if (inDegree[item] === 0) {
+          idxQueue.push(item);
         }
       }
     }

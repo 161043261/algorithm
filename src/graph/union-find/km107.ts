@@ -7,8 +7,8 @@ const rl = createInterface({
 
 let lineno = 0;
 
-let nodeNum: number = 0;
-let edgeNum: number = 0;
+let nodeNum = 0;
+let edgeNum = 0;
 
 const edges: [start: number, end: number][] = [];
 let parents: number[] = [];

@@ -82,9 +82,9 @@ function findRightInterval(intervals: number[][]): number[] {
     }
     r = r + 1;
     if (r < 0 || r >= range.length) {
-      ans[wm.get(intervals[i])!] = -1;
+      ans[wm.get(intervals[i]) ?? -1] = -1;
     } else {
-      ans[wm.get(intervals[i])!] = wm.get(intervals[i + r])!;
+      ans[wm.get(intervals[i]) ?? -1] = wm.get(intervals[i + r]) ?? -1;
     }
   }
   return ans;
