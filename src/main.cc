@@ -9,17 +9,8 @@ class Solution {
     auto matW = static_cast<int>(mat[0].size());
     auto ans = vector<int>();
 
-    auto ld2rt = [&](int y, int x) {
-      for (auto i = 0; i < matH; i++, y--, x++) {
-        if (y < 0 or y >= matH or x < 0 or x >= matW) {
-          continue;
-        }
-        ans.emplace_back(mat[y][x]);
-      }
-    };
-
-    auto rt2ld = [&](int y, int x) {
-      for (auto i = 0; i < matH; i++, y++, x--) {
+    auto flow = [&](int y, int x, int step) {
+      for (auto i = 0; i < matH; i++, y -= step, x += step) {
         if (y < 0 or y >= matH or x < 0 or x >= matW) {
           continue;
         }
@@ -29,8 +20,8 @@ class Solution {
 
     auto loop = (matH + matW) / 2;
     for (auto i = 0, x = -matH + 1, x2 = 1; i < loop; i++, x += 2, x2 += 2) {
-      ld2rt(matH - 1, x);
-      rt2ld(0, x2);
+      flow(matH - 1, x, 1);
+      flow(0, x2, -1);
     }
 
     return ans;

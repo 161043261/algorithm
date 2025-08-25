@@ -7,8 +7,9 @@ using namespace std;
 
 class Prototype {
  public:
-  virtual shared_ptr<Prototype> clone() const = 0;
+  virtual unique_ptr<Prototype> clone() const = 0;
   virtual string getDetails() const = 0;
+  virtual ~Prototype() = default;
 };
 
 class RectanglePrototype : public Prototype {
@@ -21,8 +22,8 @@ class RectanglePrototype : public Prototype {
   RectanglePrototype(string color, int width, int height)
       : color(color), width(width), height(height) {}
 
-  shared_ptr<Prototype> clone() const override {
-    return make_shared<RectanglePrototype>(this->color, this->width,
+  unique_ptr<Prototype> clone() const override {
+    return make_unique<RectanglePrototype>(this->color, this->width,
                                            this->height);
   }
 
@@ -40,12 +41,12 @@ int main() {
   int rectangleCnt;
   cin >> rectangleCnt;
 
-  vector<shared_ptr<Prototype>> rectangleList;
+  vector<unique_ptr<Prototype>> rectangleList;
 
   for (auto i = 0; i < rectangleCnt; i++) {
     auto originalRectangle =
-        make_shared<RectanglePrototype>(color, width, height);
-    rectangleList.emplace_back(originalRectangle);
+        make_unique<RectanglePrototype>(color, width, height);
+    rectangleList.emplace_back(std::move(originalRectangle));
   }
 
   for (const auto& rectangle : rectangleList) {

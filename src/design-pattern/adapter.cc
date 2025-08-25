@@ -35,20 +35,20 @@ int main() {
   auto totalCnt = 0;
   cin >> totalCnt;
 
-  auto newComputer = new NewComputer();
-  auto usbCharger = new UsbCharger();
-  auto typeToUsbAdapter = new TypeCToUsbAdapter(usbCharger);
+  auto newComputer = NewComputer();
+  auto usbCharger = UsbCharger();
+  auto typeToUsbAdapter = TypeCToUsbAdapter(&usbCharger);
 
   for (auto i = 0; i < totalCnt; i++) {
     int num;
     cin >> num;
     if (num == 1) {
-      newComputer->chargeWithTypeC();
+      newComputer.chargeWithTypeC();
       continue;
     }
 
     if (num == 2) {
-      typeToUsbAdapter->chargeWithTypeC();
+      typeToUsbAdapter.chargeWithTypeC();
     }
   }
 }
