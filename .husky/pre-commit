@@ -1,0 +1,7 @@
+pnpm exec lint-staged
+
+# cmake -S ./ -B ./build
+
+# cmake --build ./build
+
+# uv run black ./src

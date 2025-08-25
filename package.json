@@ -1,0 +1,42 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "Some algorithms implemented by JS/TS/C++/Python",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write ./src",
+    "lint": "eslint --fix ./src",
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "prepare": "husky",
+    "compile": "babel ./src -d ./lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@eslint/js": "^9.33.0",
+    "@types/node": "^22.17.2",
+    "eslint": "^9.33.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.1"
+  },
+  "type": "module",
+  "lint-staged": {
+    "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
+      "pnpm format",
+      "pnpm lint"
+    ],
+    "*.py": [
+      "uv run black ./src"
+    ]
+  }
+}
