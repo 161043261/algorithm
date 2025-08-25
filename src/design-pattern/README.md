@@ -15,4 +15,4 @@
 - 适配器模式
   - [adapter.cc](./adapter.cc)
 - 代理模式
-  - [proxy.ts](./proxy.ts)
+  - [proxy.cc](./proxy.cc)
