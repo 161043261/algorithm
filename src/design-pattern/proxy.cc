@@ -34,10 +34,10 @@ class HomeProxy : public HomeBuyer {
 int main() {
   auto buyer = HomeBuyer();
   auto buyerProxy = HomeProxy(buyer);
-  auto cnt = 0;
-  cin >> cnt;
+  auto totalCnt = 0;
+  cin >> totalCnt;
 
-  for (auto _ = 0; _ < cnt; _++) {
+  for (auto _ = 0; _ < totalCnt; _++) {
     auto area = 0;
     cin >> area;
     buyerProxy.requestBuy(area);

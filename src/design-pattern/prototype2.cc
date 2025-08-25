@@ -43,7 +43,7 @@ int main() {
 
   vector<unique_ptr<Prototype>> rectangleList;
 
-  for (auto i = 0; i < rectangleCnt; i++) {
+  for (auto _ = 0; _ < rectangleCnt; _++) {
     auto originalRectangle =
         make_unique<RectanglePrototype>(color, width, height);
     rectangleList.emplace_back(std::move(originalRectangle));

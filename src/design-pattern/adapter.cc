@@ -39,7 +39,7 @@ int main() {
   auto usbCharger = UsbCharger();
   auto typeToUsbAdapter = TypeCToUsbAdapter(&usbCharger);
 
-  for (auto i = 0; i < totalCnt; i++) {
+  for (auto _ = 0; _ < totalCnt; _++) {
     int num;
     cin >> num;
     if (num == 1) {

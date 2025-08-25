@@ -42,7 +42,7 @@ int main() {
 
   vector<shared_ptr<Prototype>> rectangleList;
 
-  for (auto i = 0; i < rectangleCnt; i++) {
+  for (auto _ = 0; _ < rectangleCnt; _++) {
     auto originalRectangle =
         make_shared<RectanglePrototype>(color, width, height);
     rectangleList.emplace_back(originalRectangle);
