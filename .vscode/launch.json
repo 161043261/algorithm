@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "console": "integratedTerminal",
+      "name": "python",
+      "program": "${file}",
+      "request": "launch",
+      "type": "debugpy"
+    },
+    {
+      "name": "javascript",
+      "program": "${file}",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "typescript",
+      "program": "${workspaceFolder}/dist/${relativeFileDirname}/${fileBasenameNoExtension}.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "cwd": "${workspaceRoot}",
+      "name": "cpp",
+      "program": "${workspaceRoot}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
+      "request": "launch",
+      "type": "lldb-dap"
+    }
+  ],
+  "version": "0.2.0"
+}
