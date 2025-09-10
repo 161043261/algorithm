@@ -1,0 +1,49 @@
+{
+  "author": "github.com/161043261",
+  "description": "Algorithms implemented by TS/Python/JS/C++",
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "@eslint/js": "^9.34.0",
+    "@types/node": "^22.18.0",
+    "eslint": "^9.34.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  },
+  "keywords": [
+    "I",
+    "love",
+    "you"
+  ],
+  "repository": "git@github.com:161043261/algorithm",
+  "license": "ISC",
+  "lint-staged": {
+    "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
+      "pnpm format",
+      "pnpm lint"
+    ],
+    "*.py": [
+      "uv run ruff format ./src",
+      "uv run ruff check ./src"
+    ]
+  },
+  "name": "algorithm",
+  "packageManager": "pnpm@10.13.1",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "polyfill": "babel dist/src --out-dir dist/polyfill",
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "format": "prettier --write ./src",
+    "lint": "eslint ./src --fix",
+    "prepare": "husky",
+    "main:js": "node ./src/main.js",
+    "main:ts": "tsc && node ./dist/src/main.js"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}
