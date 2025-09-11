@@ -1,5 +1,17 @@
 {
   "python.analysis.typeCheckingMode": "strict",
   "cSpell.words": ["endforeach"],
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.ejs": "ejs",
+    "functional": "cpp",
+    "format": "cpp",
+    "istream": "cpp",
+    "ranges": "cpp",
+    "streambuf": "cpp",
+    "variant": "cpp"
+  }
   // "C_Cpp.intelliSenseEngine": "disabled",
 }

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-auto next = vector<pair<int, int>>{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+auto step = vector<pair<int, int>>{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 int rowNum;
 int colNum;
@@ -31,7 +31,7 @@ int main() {
   dfs = [&](auto y, auto x, auto& visit) -> void {
     visit[y][x] = true;
 
-    for (const auto& item : next) {
+    for (const auto& item : step) {
       auto dy = item.first;
       auto dx = item.second;
       auto nextY = y + dy;
