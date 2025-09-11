@@ -41,8 +41,8 @@
     "format": "prettier --write ./src",
     "lint": "eslint ./src --fix",
     "prepare": "husky",
-    "main:js": "node ./src/main.js",
-    "main:ts": "tsc && node ./dist/src/main.js"
+    "start:js": "node ./src/main.js",
+    "start:ts": "tsc && node ./dist/src/main.js"
   },
   "type": "module",
   "version": "1.0.0"

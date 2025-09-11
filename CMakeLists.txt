@@ -33,7 +33,7 @@ foreach(source_file IN LISTS source_files)
       RUNTIME_OUTPUT_DIRECTORY "${target_directory}"
       OUTPUT_NAME "${source_file_name_we}"
     )
-    message(STATUS "y: ${source_file} → ${target_directory}/${source_file_name_we}")
+    message(STATUS "Y: ${source_file} → ${target_directory}/${source_file_name_we}")
   else()
     message(STATUS "n: ${source_file}")
   endif()

@@ -60,11 +60,7 @@ init: ## Initial commit
 .PHONY: clean
 clean: ## Remove ./build ./dist ./lib ./target ./.idea and caches
 	rm -rf ./build ./dist ./lib ./target \
-	./.idea ./.cache ./.mypy_cache ./ruff_cache
-
-	@echo "./build  -- clang++/g++ binary files"
-	@echo "./dist   -- tsc compiled JS files"
-	@echo "./lib    -- babel compiled JS files"
+	./.idea ./.cache ./.mypy_cache ./.ruff_cache
 
 .PHONY: format
 format: build ## Format code
@@ -79,6 +75,7 @@ build: ## Run cmake, tsc and go build
 	cmake --build ./build
 
 	@echo "Make tsc compiled JS files, output: ./dist"
+	rm -rf ./dist
 	pnpm build # tsc
 
 .PHONY: help

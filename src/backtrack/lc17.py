@@ -2,7 +2,7 @@ from typing import Dict, List
 
 
 class Solution:
-    num2char: Dict[int, List[str]] = dict(
+    num2chr: Dict[int, List[str]] = dict(
         {
             2: ["a", "b", "c"],
             3: ["d", "e", "f"],
@@ -31,7 +31,7 @@ class Solution:
             self.ans.append("".join(self.path))
             return
 
-        for i in self.num2char[int(self.digits[idx])]:
+        for i in self.num2chr[int(self.digits[idx])]:
             self.path.append(i)
             self.backtrack(idx + 1)
             self.path.pop()

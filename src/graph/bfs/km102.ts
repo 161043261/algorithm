@@ -5,7 +5,7 @@ const rl = createInterface({
   output: process.stdout,
 });
 
-const step: [number, number][] = [
+const next: [number, number][] = [
   [0, 1],
   [1, 0],
   [0, -1],
@@ -68,7 +68,7 @@ function islandArea() {
         isIsolated = false;
       }
 
-      for (const [dy, dx] of step) {
+      for (const [dy, dx] of next) {
         const nextY = headY + dy;
         const nextX = headX + dx;
         if (

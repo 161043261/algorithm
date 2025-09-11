@@ -4,16 +4,16 @@ from typing import List, Tuple
 step: List[Tuple[int, int]] = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 grid: List[List[int]] = []
-luVisit: List[List[bool]]
-rdVisit: List[List[bool]]
+leftUpVisit: List[List[bool]]
+rightDownVisit: List[List[bool]]
 
 rowNum, colNum = map(int, input().strip().split(" "))
 
 for _ in range(rowNum):
     grid.append(list(map(int, input().strip().split(" "))))
 
-luVisit = [[False for _ in range(colNum)] for _ in range(rowNum)]
-rdVisit = [[False for _ in range(colNum)] for _ in range(rowNum)]
+leftUpVisit = [[False for _ in range(colNum)] for _ in range(rowNum)]
+rightDownVisit = [[False for _ in range(colNum)] for _ in range(rowNum)]
 
 ans: List[Tuple[int, int]] = []
 
@@ -36,16 +36,16 @@ def main() -> None:
                 dfs(nextY, nextX, visit)
 
     for x in range(colNum):
-        dfs(0, x, luVisit)
-        dfs(rowNum - 1, x, rdVisit)
+        dfs(0, x, leftUpVisit)
+        dfs(rowNum - 1, x, rightDownVisit)
 
     for y in range(rowNum):
-        dfs(y, 0, luVisit)
-        dfs(y, colNum - 1, rdVisit)
+        dfs(y, 0, leftUpVisit)
+        dfs(y, colNum - 1, rightDownVisit)
 
     for y in range(rowNum):
         for x in range(colNum):
-            if luVisit[y][x] and rdVisit[y][x]:
+            if leftUpVisit[y][x] and rightDownVisit[y][x]:
                 ans.append((y, x))
 
 
