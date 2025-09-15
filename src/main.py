@@ -1,24 +1,24 @@
-from typing import List, Tuple
-from heapq import heapify, heapreplace
+class TreeNode:
+    def __init__(self, x: int):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
-        hpArr: List[Tuple[float, int, int]] = []
-        for passNum, totalNum in classes:
-            gain = (totalNum - passNum) / (totalNum * (totalNum + 1))
-            hpArr.append((-gain, passNum, totalNum))
+    def __init__(self) -> None:
+        self.ans: int = 0
 
-        heapify(hpArr)
+    def maxSum(self, root: TreeNode) -> int:
+        if root.left is None and root.right is None:
+            return max(0, root.val)
 
-        for _ in range(extraStudents):
-            _, passNum, totalNum = hpArr[0]
-            passNum += 1
-            totalNum += 1
+        if root.left is not None:
+            leftSum = self.maxSum(root.left)
+            return max(0, root.val, root.val + leftSum)
 
-            newGain = (totalNum - passNum) / (totalNum * (totalNum + 1))
-            heapreplace(hpArr, (-newGain, passNum, totalNum))
+        if root.right is not None:
+            rightSum = self.maxSum(root.right)
+            return max(0, root.val, root.val + rightSum)
 
-        return sum((passNum / totalNum) for _, passNum, totalNum in hpArr) / len(
-            classes
-        )
+        return 0

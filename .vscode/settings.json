@@ -11,7 +11,8 @@
     "istream": "cpp",
     "ranges": "cpp",
     "streambuf": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "vector": "cpp"
   }
   // "C_Cpp.intelliSenseEngine": "disabled",
 }

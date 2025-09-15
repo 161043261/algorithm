@@ -12,9 +12,3 @@ af().then((res) => {
   console.log(res);
 });
 console.log("end");
-
-// start
-// af start
-
-// p
-// end
