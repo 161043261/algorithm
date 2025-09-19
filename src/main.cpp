@@ -1,25 +1,45 @@
-#include <set>
-#include <unordered_map>
+#include <string>
+#include <vector>
 
 using namespace std;
 
-class NumberContainers {
-  unordered_map<int, int> idx2num;
-  unordered_map<int, set<int>> num2indices;
-
+class Spreadsheet {
  public:
-  void change(int index, int number) {
-    auto it = idx2num.find(index);
-    if (it != idx2num.end()) {
-      num2indices[it->second].erase(index);
-    }
-    idx2num[index] = number;
-    num2indices[number].insert(index);
+  vector<vector<int>> sheet;
+  Spreadsheet(int rows)
+      : sheet(vector<vector<int>>(rows, vector<int>(26, 0))) {}
+
+  void setCell(string cell, int value) {
+    auto col = cell[0] - 'A';
+    auto row = stoi(cell.substr(1)) - 1;
+    this->sheet[row][col] = value;
   }
 
-  int find(int number) {
-    auto it = num2indices.find(number);
-    return it == num2indices.end() || it->second.empty() ? -1
-                                                         : *it->second.begin();
+  void resetCell(string cell) { this->setCell(cell, 0); }
+
+  int getValue(string formula) {
+    auto addIdx = formula.find_first_of('+');
+    auto lExpr = formula.substr(1, addIdx - 1);
+    auto rExpr = formula.substr(addIdx + 1);
+    int l, r;
+    try {
+      l = stoi(lExpr);
+    } catch (...) {
+      l = this->getCell(lExpr);
+    }
+
+    try {
+      r = stoi(rExpr);
+    } catch (...) {
+      r = this->getCell(rExpr);
+    }
+    return l + r;
+  }
+
+ private:
+  int getCell(string cell) {
+    auto col = cell[0] - 'A';
+    auto row = stoi(cell.substr(1)) - 1;
+    return this->sheet[row][col];
   }
 };

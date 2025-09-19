@@ -1,24 +1,36 @@
-class TreeNode:
-    def __init__(self, x: int):
-        self.val = x
-        self.left = None
-        self.right = None
+from typing import Dict, List, Tuple
+from heapq import heapify, heappush, heappop
 
 
-class Solution:
-    def __init__(self) -> None:
-        self.ans: int = 0
+class TaskManager:
+    def __init__(self, tasks: List[List[int]]):
+        self.mp: Dict[int, Tuple[int, int]] = {
+            taskId: (priority, userId) for userId, taskId, priority in tasks
+        }
 
-    def maxSum(self, root: TreeNode) -> int:
-        if root.left is None and root.right is None:
-            return max(0, root.val)
+        self.h: List[Tuple[int, int, int]] = [
+            (-priority, -taskId, userId) for userId, taskId, priority in tasks
+        ]
 
-        if root.left is not None:
-            leftSum = self.maxSum(root.left)
-            return max(0, root.val, root.val + leftSum)
+        heapify(self.h)
 
-        if root.right is not None:
-            rightSum = self.maxSum(root.right)
-            return max(0, root.val, root.val + rightSum)
+    def add(self, userId: int, taskId: int, priority: int) -> None:
+        self.mp[taskId] = (priority, userId)
+        heappush(self.h, (-priority, -taskId, userId))
 
-        return 0
+    def edit(self, taskId: int, newPriority: int) -> None:
+        userId = self.mp[taskId][1]
+        self.add(userId, taskId, newPriority)
+
+    def rmv(self, taskId: int) -> None:
+        self.mp[taskId] = (-1, -1)
+
+    def execTop(self) -> int:
+        while len(self.h) > 0:
+            negPriority, negTaskId, userId = heappop(self.h)
+            priority, userId2 = self.mp[-negTaskId]
+            if -negPriority == priority and userId == userId2:
+                self.rmv(-negTaskId)
+                return userId
+
+        return -1
