@@ -1,45 +1,81 @@
+#include <set>
 #include <string>
+#include <tuple>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
 
-class Spreadsheet {
- public:
-  vector<vector<int>> sheet;
-  Spreadsheet(int rows)
-      : sheet(vector<vector<int>>(rows, vector<int>(26, 0))) {}
-
-  void setCell(string cell, int value) {
-    auto col = cell[0] - 'A';
-    auto row = stoi(cell.substr(1)) - 1;
-    this->sheet[row][col] = value;
-  }
-
-  void resetCell(string cell) { this->setCell(cell, 0); }
-
-  int getValue(string formula) {
-    auto addIdx = formula.find_first_of('+');
-    auto lExpr = formula.substr(1, addIdx - 1);
-    auto rExpr = formula.substr(addIdx + 1);
-    int l, r;
-    try {
-      l = stoi(lExpr);
-    } catch (...) {
-      l = this->getCell(lExpr);
-    }
-
-    try {
-      r = stoi(rExpr);
-    } catch (...) {
-      r = this->getCell(rExpr);
-    }
-    return l + r;
-  }
-
+class MovieRentingSystem {
  private:
-  int getCell(string cell) {
-    auto col = cell[0] - 'A';
-    auto row = stoi(cell.substr(1)) - 1;
-    return this->sheet[row][col];
+  // shopMovie => price
+  unordered_map<string, int> shopMovie2price;
+  // unrentedMovie => (price, shop)
+  unordered_map<int, set<pair<int, int>>> unrentedMovie2priceShop;
+  // (price, shop, rentedMovie)
+  set<tuple<int, int, int>> rentedMovies;
+
+  string getShopMovieKey(int shop, int movie) {
+    return to_string(shop) + ',' + to_string(movie);
+  }
+
+ public:
+  MovieRentingSystem(int n, vector<vector<int>>& entries) {
+    for (auto& e : entries) {
+      auto shop = e[0], movie = e[1], price = e[2];
+      auto shopMovieKey = this->getShopMovieKey(shop, movie);
+      this->shopMovie2price[shopMovieKey] = price;
+
+      if (this->unrentedMovie2priceShop.find(movie) ==
+          this->unrentedMovie2priceShop.cend()) {
+        this->unrentedMovie2priceShop[movie] =
+            set<pair<int, int>>{pair{price, shop}};
+      } else {
+        this->unrentedMovie2priceShop[movie].emplace(pair{price, shop});
+      }
+    }
+  }
+
+  vector<int> search(int movie) {
+    auto ans = vector<int>{};
+
+    auto it = unrentedMovie2priceShop.find(movie);
+    if (it == unrentedMovie2priceShop.cend()) {
+      return ans;
+    }
+
+    for (auto& [_, shop] : it->second) {
+      // ans.push_back(shop);
+      ans.emplace_back(shop);
+      if (ans.size() == 5) {
+        break;
+      }
+    }
+    return ans;
+  }
+
+  void rent(int shop, int movie) {
+    auto shopMovieKey = this->getShopMovieKey(shop, movie);
+    auto price = this->shopMovie2price[shopMovieKey];
+    this->unrentedMovie2priceShop[movie].erase({price, shop});
+    this->rentedMovies.emplace(tuple{price, shop, movie});
+  }
+
+  void drop(int shop, int movie) {
+    auto shopMovieKey = this->getShopMovieKey(shop, movie);
+    auto price = shopMovie2price[shopMovieKey];
+    this->rentedMovies.erase(tuple{price, shop, movie});
+    this->unrentedMovie2priceShop[movie].emplace(pair{price, shop});
+  }
+
+  vector<vector<int>> report() {
+    auto ans = vector<vector<int>>{};
+    for (auto& [_, shop, movie] : rentedMovies) {
+      ans.emplace_back(vector{shop, movie});
+      if (ans.size() == 5) {
+        break;
+      }
+    }
+    return ans;
   }
 };
