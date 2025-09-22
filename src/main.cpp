@@ -29,9 +29,9 @@ class MovieRentingSystem {
       if (this->unrentedMovie2priceShop.find(movie) ==
           this->unrentedMovie2priceShop.cend()) {
         this->unrentedMovie2priceShop[movie] =
-            set<pair<int, int>>{pair{price, shop}};
+            set<pair<int, int>>{pair<int, int>{price, shop}};
       } else {
-        this->unrentedMovie2priceShop[movie].emplace(pair{price, shop});
+        this->unrentedMovie2priceShop[movie].emplace(pair<int, int>{price, shop});
       }
     }
   }
@@ -58,20 +58,20 @@ class MovieRentingSystem {
     auto shopMovieKey = this->getShopMovieKey(shop, movie);
     auto price = this->shopMovie2price[shopMovieKey];
     this->unrentedMovie2priceShop[movie].erase({price, shop});
-    this->rentedMovies.emplace(tuple{price, shop, movie});
+    this->rentedMovies.emplace(tuple<int, int, int>{price, shop, movie});
   }
 
   void drop(int shop, int movie) {
     auto shopMovieKey = this->getShopMovieKey(shop, movie);
     auto price = shopMovie2price[shopMovieKey];
-    this->rentedMovies.erase(tuple{price, shop, movie});
-    this->unrentedMovie2priceShop[movie].emplace(pair{price, shop});
+    this->rentedMovies.erase(tuple<int, int, int>{price, shop, movie});
+    this->unrentedMovie2priceShop[movie].emplace(pair<int, int>{price, shop});
   }
 
   vector<vector<int>> report() {
     auto ans = vector<vector<int>>{};
     for (auto& [_, shop, movie] : rentedMovies) {
-      ans.emplace_back(vector{shop, movie});
+      ans.emplace_back(vector<int>{shop, movie});
       if (ans.size() == 5) {
         break;
       }
