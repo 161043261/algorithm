@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_GENERATOR Ninja)
 
 if(WIN32)
-  set(CMAKE_CXX_COMPILER g++)
+  set(CMAKE_CXX_COMPILER clang-cl)
 else()
   set(CMAKE_CXX_COMPILER clang++)
 endif()

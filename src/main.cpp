@@ -31,7 +31,8 @@ class MovieRentingSystem {
         this->unrentedMovie2priceShop[movie] =
             set<pair<int, int>>{pair<int, int>{price, shop}};
       } else {
-        this->unrentedMovie2priceShop[movie].emplace(pair<int, int>{price, shop});
+        this->unrentedMovie2priceShop[movie].emplace(
+            pair<int, int>{price, shop});
       }
     }
   }
