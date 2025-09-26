@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.28)
+﻿cmake_minimum_required(VERSION 3.21)
 
 project(algorithm CXX)
 
@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_GENERATOR Ninja)
 
 if(WIN32)
-  set(CMAKE_CXX_COMPILER clang-cl)
+  set(CMAKE_CXX_COMPILER g++)
 else()
   set(CMAKE_CXX_COMPILER clang++)
 endif()
