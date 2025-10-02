@@ -25,10 +25,6 @@
     "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
       "pnpm format",
       "pnpm lint"
-    ],
-    "*.py": [
-      "uv run ruff format ./src",
-      "uv run ruff check ./src"
     ]
   },
   "name": "algorithm",

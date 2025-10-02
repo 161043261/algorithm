@@ -1,61 +1,30 @@
-#include <algorithm>
-#include <functional>
-#include <vector>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-namespace ranges_ {
-void sort(vector<int>& nums) {
-  std::sort(nums.begin(), nums.end(),
-            [&](auto a, auto b) -> bool { return a <= b; });
-};
-}  // namespace ranges_
-
-class Solution {
- public:
-  int triangleNumber2(vector<int>& nums) {
-    if (nums.size() < 3) {
-      return 0;
-    }
-    // sort(nums.begin(), nums.end(),
-    //      [&](auto a, auto b) -> bool { return a <= b; });
-    ranges_::sort(nums);
-    auto ans = 0;
-    for (auto k = 2; k < nums.size(); k++) {
-      auto i = 0;
-      auto j = k - 1;
-      while (i < j) {
-        if (nums[i] != 0 && nums[i] + nums[j] > nums[k]) {
-          ans += j - i;
-          j--;
-        } else {
-          i++;
-        }
-      }
-    }
-
-    return ans;
+int main() {
+  string dir = "ac";
+  if (filesystem::exists(dir)) {
+    filesystem::remove_all(dir);
   }
+  filesystem::create_directory(dir);
+  string cdCmd = "cd " + dir;
 
-  int triangleNumber(vector<int>& nums) {
-    if (nums.size() < 3) {
-      return 0;
+  auto runCmd = [&](const string& cmd) -> void {
+    int ret = system(cmd.c_str());
+    if (ret != 0) {
+      exit(1);
     }
-    // sort(nums.begin(), nums.end(), [&](auto a, auto b) { return a <= b; });
-    ranges_::sort(nums);
-    auto ans = 0;
-    for (auto i = 0; i < nums.size() - 2; i++) {
-      if (nums[i] == 0) {
-        continue;
-      }
-      auto j = i + 1;
-      for (auto k = i + 2; k < nums.size(); k++) {
-        while (nums[i] + nums[j] <= nums[k]) {
-          j++;
-        }
-        ans += k - j;
-      }
-    }
-    return ans;
-  }
-};
+  };
+
+  runCmd(cdCmd + " && pnpm init");
+  runCmd(cdCmd + " && tsc --init");
+  runCmd(cdCmd + " && pnpm add @types/node -D");
+  ofstream("ac/main1.ts");
+  ofstream("ac/main2.ts");
+  ofstream("ac/main3.ts");
+  runCmd(cdCmd + " && code .");
+  return 0;
+}
