@@ -1,30 +1,33 @@
-#include <filesystem>
-#include <fstream>
-#include <iostream>
+#include <climits>
+#include <functional>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
-int main() {
-  string dir = "ac";
-  if (filesystem::exists(dir)) {
-    filesystem::remove_all(dir);
+class Solution {
+ public:
+  int minScoreTriangulation(vector<int>& values) {
+    auto memo = unordered_map<string, int>();
+    function<int(int, int)> dp = [&](auto i, auto j) -> int {
+      if (i + 2 > j) {
+        return 0;
+      }
+      if (i + 2 == j) {
+        return values[i] * values[i + 1] * values[i + 2];
+      }
+      auto key = to_string(i) + "," + to_string(j);
+      if (!memo.contains(key)) {
+        auto minScore = INT_MAX;
+        for (auto k = i + 1; k < j; k++) {
+          minScore = min(minScore, values[i] * values[k] * values[j] +
+                                       dp(i, k) + dp(k, j));
+        }
+        memo[key] = minScore;
+      }
+      return memo[key];
+    };
+    return dp(0, values.size() - 1);
   }
-  filesystem::create_directory(dir);
-  string cdCmd = "cd " + dir;
-
-  auto runCmd = [&](const string& cmd) -> void {
-    int ret = system(cmd.c_str());
-    if (ret != 0) {
-      exit(1);
-    }
-  };
-
-  runCmd(cdCmd + " && pnpm init");
-  runCmd(cdCmd + " && tsc --init");
-  runCmd(cdCmd + " && pnpm add @types/node -D");
-  ofstream("ac/main1.ts");
-  ofstream("ac/main2.ts");
-  ofstream("ac/main3.ts");
-  runCmd(cdCmd + " && code .");
-  return 0;
-}
+};

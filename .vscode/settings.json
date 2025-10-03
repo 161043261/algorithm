@@ -1,5 +1,5 @@
 {
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "strict",
   "cSpell.words": ["endforeach"]
   // "C_Cpp.intelliSenseEngine": "disabled",
 }
