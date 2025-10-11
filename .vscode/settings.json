@@ -1,0 +1,12 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "cSpell.words": ["endforeach"],
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "random": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp"
+  }
+}
