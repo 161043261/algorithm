@@ -1,0 +1,16 @@
+**/.DS_Store
+**/.build/
+**/.cache/
+**/.fleet/
+**/.idea/
+**/.mypy_cache/
+**/.venv/
+**/__cache__/
+**/build/
+**/dist/
+**/lib/
+**/node_modules/
+**/out/
+**/target/
+**/.trash/
+**/.codebuddy/

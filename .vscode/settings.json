@@ -1,0 +1,5 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "cSpell.words": ["endforeach", "tianchenghang"],
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
