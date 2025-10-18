@@ -7,7 +7,7 @@ import {
   rmSync,
   statSync,
 } from "node:fs";
-import path, { dirname, extname, join } from "node:path";
+import { dirname, extname, join } from "node:path";
 import { platform } from "node:os";
 import { spawnSync } from "node:child_process";
 
@@ -106,7 +106,7 @@ function startCompile() {
 
     console.log(`\x1b[92m-- add executable ${srcPath}\x1b[0m`);
 
-    const srcPathNoExt = srcPath.slice(0, -path.extname(srcPath).length);
+    const srcPathNoExt = srcPath.slice(0, -extname(srcPath).length);
 
     let exePath = join(outDir, srcPathNoExt);
 
