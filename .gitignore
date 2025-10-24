@@ -10,6 +10,7 @@
 **/.venv/
 **/.vs/
 **/__cache__/
+**/__pycache__/
 **/build/
 **/dist/
 **/lib/
