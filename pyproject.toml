@@ -1,0 +1,9 @@
+[project]
+dependencies = [
+  "ruff>=0.14.1",
+]
+description = "Algorithms implemented by JS/TS/C++/Python"
+name = "algorithm"
+readme = "README.md"
+requires-python = ">=3.13"
+version = "0.1.0"
