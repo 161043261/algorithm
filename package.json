@@ -1,0 +1,43 @@
+{
+  "author": "github.com/161043261",
+  "description": "Algorithms implemented by TS/Python/JS/C++",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.2",
+    "eslint": "^9.34.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "lint-staged": {
+    "*.{json,jsonc,js,cjs,mjs,jsx,ts,cts,mts,tsx,html,vue,css,scss,md,mdx}": [
+      "pnpm format",
+      "pnpm lint"
+    ]
+  },
+  "name": "algorithm",
+  "packageManager": "pnpm@10.13.1",
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "vue": "^3.5.22"
+  },
+  "private": true,
+  "repository": "git@github.com:161043261/algorithm",
+  "scripts": {
+    "build": "tsc",
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "format": "prettier --write ./src",
+    "lint": "eslint ./src --fix",
+    "main:js": "node ./src/index.js",
+    "main:ts": "tsc && node ./dist/src/main.js",
+    "prepare": "husky"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

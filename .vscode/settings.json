@@ -1,0 +1,13 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "cSpell.words": ["endforeach", "nums"],
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "bit": "cpp",
+    "cstdint": "cpp",
+    "ostream": "cpp",
+    "iostream": "cpp"
+  }
+}
