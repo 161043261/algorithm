@@ -57,6 +57,12 @@
     "streambuf": "cpp",
     "text_encoding": "cpp",
     "typeinfo": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "cerrno": "cpp",
+    "climits": "cpp",
+    "ios": "cpp",
+    "unordered_set": "cpp",
+    "cstdarg": "cpp",
+    "cstdbool": "cpp"
   }
 }
