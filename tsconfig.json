@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    // "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "nodenext",
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true,
+
+    "moduleResolution": "nodenext",
+    // "allowImportingTsExtensions": true,
+    "noEmit": false,
+
+    /* Bundler mode */
+    // "moduleResolution": "bundler",
+    // "allowImportingTsExtensions": true,
+    // "noEmit": true,
+
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "outDir": "./dist",
+    "rootDir": "./"
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "webpack/webpack.prod.js"],
+  "exclude": ["dist", "node_modules"]
+}
