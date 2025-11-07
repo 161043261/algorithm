@@ -6,6 +6,7 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { dirname } from "node:path";
+import tailwindcss from "@tailwindcss/vite";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,7 +19,10 @@ const getConfig = (type: "vue" | "react") =>
     build: {
       outDir: resolve(__dirname, "./vite/dist"),
     },
-    plugins: type === "react" ? [react()] : [vue(), vueJsx(), vueDevTools()],
+    plugins: [
+      ...(type === "react" ? [react()] : [vue(), vueJsx(), vueDevTools()]),
+      tailwindcss()
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -26,5 +30,5 @@ const getConfig = (type: "vue" | "react") =>
     },
   });
 
-// export default getConfig("react")
-export default getConfig("vue");
+export default getConfig("react");
+// export default getConfig("vue");

@@ -11,7 +11,6 @@
   },
   "name": "algorithm",
   "packageManager": "pnpm@10.13.1",
-  "peerDependencies": {},
   "private": true,
   "repository": "git@github.com:161043261/algorithm",
   "scripts": {
@@ -31,6 +30,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "@eslint/js": "^9.34.0",
+    "@tailwindcss/vite": "^4.1.17",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.18.0",
     "@types/react": "^19.2.2",
@@ -64,6 +64,7 @@
     "react-dom": "^19.1.1",
     "react-router": "^7.9.5",
     "react-router-dom": "^7.9.5",
+    "tailwindcss": "^4.1.17",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0",

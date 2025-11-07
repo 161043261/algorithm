@@ -8,7 +8,6 @@
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "nodenext",
-    "types": ["node", "vite/client"],
     "skipLibCheck": true,
 
     "moduleResolution": "nodenext",
@@ -23,7 +22,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
 
-    /* React */
+    /* React only */
     "jsx": "react-jsx",
 
     /* Linting */
@@ -41,6 +40,12 @@
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "webpack/shims.d.ts",
+    "vite/client.d.ts"
+  ],
   "exclude": ["dist", "node_modules"]
 }
