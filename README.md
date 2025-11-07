@@ -6,8 +6,11 @@
 
 ## JS/TS
 
-- webpack 的入口文件是 [./src/index.tsx](./src/index.tsx) 或 [./src/main.ts](./src/main.ts), HTML 模板是 [./public/index.html](./public/index.html)
-- 打包命令是 `npm run build`
+- nvm
+- fnm
+
+- webpack 的入口文件是 [./src/index.tsx](./src/index.tsx) 或 [./src/main.ts](./src/main.ts), HTML 模板是 [./src/index.html](./src/index.html)
+- vite 的入口文件是 [./src/index.html](./src/index.html)
 
 ## C++
 
@@ -16,6 +19,10 @@ winget install Microsoft.VisualStudio.2022.BuildTools --force --override "--wait
 ```
 
 ## Python
+
+- miniconda
+- poetry
+- uv
 
 ```bash
 conda create -n venv python=3.13 -y
