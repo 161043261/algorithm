@@ -8,7 +8,7 @@ from typing import Tuple
 srcDir: str = "src"
 outDir: str = "build"
 srcExtTuple: Tuple[str] = (".cc",)
-cxxStd: str = "c++23"
+cxxStd: str = "c++20"
 # --------------------
 
 

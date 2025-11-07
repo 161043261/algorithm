@@ -1,6 +1,6 @@
 {
   "author": "github.com/161043261",
-  "description": "Algorithms implemented by TS/Python/JS/C++",
+  "description": "Algorithms implemented by JS/TS/C++/Python",
   "keywords": [],
   "license": "ISC",
   "lint-staged": {
@@ -11,7 +11,25 @@
   },
   "name": "algorithm",
   "packageManager": "pnpm@10.13.1",
-  "peerDependencies": {
+  "peerDependencies": {},
+  "private": true,
+  "repository": "git@github.com:161043261/algorithm",
+  "scripts": {
+    "compile": "tsc",
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "format": "prettier --write ./src ./vite ./webpack",
+    "lint": "eslint ./src",
+    "index:js": "node ./src/index.js",
+    "index:ts": "tsc && node ./dist/src/index.js",
+    "prepare": "husky",
+    "webpack:dev": "webpack-dev-server --config ./webpack/webpack.dev.js",
+    "webpack:build": "webpack --config ./webpack/webpack.prod.js",
+    "vite:dev": "vite --config ./vite/vite.config.ts",
+    "vite:build": "tsc -b && vite build --config ./vite/vite.config.ts"
+  },
+  "type": "module",
+  "version": "1.0.0",
+  "devDependencies": {
     "@eslint/js": "^9.34.0",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.18.0",
@@ -59,30 +77,5 @@
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
-  },
-  "private": true,
-  "repository": "git@github.com:161043261/algorithm",
-  "scripts": {
-    "compile": "tsc",
-    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
-    "format": "prettier --write ./",
-    "lint": "eslint ./",
-    "main:js": "node ./src/index.js",
-    "main:ts": "",
-    "prepare": "husky",
-    "webpack:dev": "webpack-dev-server --config ./webpack/webpack.dev.js",
-    "webpack:build": "webpack --config ./webpack/webpack.prod.js",
-    "vite:dev": "vite --config ./vite/vite.config.ts",
-    "vite:build": "tsc -b && vite build --config ./vite/vite.config.ts"
-  },
-  "type": "module",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.1.0",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.1",
-    "babel-loader": "^10.0.0",
-    "ts-loader": "^9.5.4",
-    "vue-loader": "^17.4.2"
   }
 }

@@ -15,7 +15,7 @@ import { spawnSync } from "node:child_process";
 const /** @type {string} */ srcDir = "src";
 const /** @type {string} */ outDir = "build";
 const /** @type {string[]} */ srcExtArr = [".cc"];
-const /** @type {string} */ cxxStd = "c++23";
+const /** @type {string} */ cxxStd = "c++20";
 // ----------------------------------------
 
 /**
