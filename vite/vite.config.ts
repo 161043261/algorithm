@@ -11,16 +11,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log("[vite.config.ts] __dirname:", __dirname);
 
-// https://vite.dev/config/
-export default defineConfig({
-  root: resolve(__dirname, "../src"),
-  build: {
-    outDir: resolve(__dirname, "./dist"),
-  },
-  plugins: [react(), vue(), vueJsx(), vueDevTools()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+const getConfig = (type: "vue" | "react") =>
+  // https://vite.dev/config/
+  defineConfig({
+    root: resolve(__dirname, "./src"),
+    build: {
+      outDir: resolve(__dirname, "./vite/dist"),
     },
-  },
-});
+    plugins: type === "react" ? [react()] : [vue(), vueJsx(), vueDevTools()],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    },
+  });
+
+// export default getConfig("react")
+export default getConfig("vue");
