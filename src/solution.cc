@@ -1,70 +1,61 @@
-#include <functional>
-#include <queue>
+#include <bit>
+#include <climits>
 #include <vector>
 
 using namespace std;
 
 class Solution {
+  using bigint = long long;
+
  public:
-  vector<int> processQueries(int c, vector<vector<int>>& connections,
-                             vector<vector<int>>& queries) {
-    auto graph = vector<vector<int>>(c + 1, vector<int>{});
-    for (auto& conn : connections) {
-      auto x = conn[0];
-      auto y = conn[1];
-      graph[x].emplace_back(y);
-      graph[y].emplace_back(x);
+  long long maxPower(vector<int>& stations, int r, int k) {
+    auto n = int(stations.size());
+    auto preSum = vector<bigint>(n + 1);
+    for (auto i = 0; i < n; i++) {
+      preSum[i + 1] = preSum[i] + stations[i];
+    }
+    auto power = vector<bigint>(n);
+    auto minPower = LLONG_MAX;
+
+    for (auto i = 0; i < n; i++) {
+      power[i] = preSum[min(i + r + 1, n)] - preSum[max(i - r, 0)];
+      minPower = min(minPower, power[i]);
     }
 
-    auto heapIdArr = vector<int>(c + 1, -1);
-
-    auto cmp = [&](int a, int b) { return a > b; };
-    auto heapList =
-        vector<priority_queue<int, vector<int>, function<bool(int, int)>>>{};
-
-    function<void(
-        priority_queue<int, vector<int>, function<bool(int, int)>> & pq, int)>
-        dfs;
-    dfs = [&](priority_queue<int, vector<int>, function<bool(int, int)>>& pq,
-              int x) {
-      heapIdArr[x] = heapList.size();
-      pq.push(x);
-      for (auto y : graph[x]) {
-        if (heapIdArr[y] == -1) {
-          dfs(pq, y);
+    auto check = [&](bigint low) -> bool {
+      auto diff = vector<bigint>(n + 1);
+      auto sumDiff = 0LL;
+      auto newCnt = 0LL;
+      for (auto i = 0; i < n; i++) {
+        sumDiff += diff[i];
+        auto m = low - (power[i] + sumDiff);
+        if (m <= 0) {
+          continue;
         }
+        newCnt += m;
+        if (newCnt > k) {
+          return false;
+        }
+        sumDiff += m;
+        diff[min(i + r * 2 + 1, n)] -= m;
       }
+      return true;
     };
 
-    for (auto i = 1; i <= c; i++) {
-      if (heapIdArr[i] == -1) {
-        auto pq =
-            priority_queue<int, vector<int>, function<bool(int, int)>>{cmp};
-        dfs(pq, i);
-        heapList.emplace_back(pq);
-      }
+    bigint left = minPower + k / n;
+    bigint right = minPower + k + 1;
+    while (left + 1 < right) {
+      bigint mid = left + (right - left) / 2;
+      (check(mid) ? left : right) = mid;
     }
-
-    auto ans = vector<int>{};
-    auto offline = vector<int>(c + 1);
-    for (auto& q : queries) {
-      auto x = q[1];
-      if (q[0] == 2) {
-        offline[x] = true;
-        continue;
-      }
-
-      if (!offline[x]) {
-        ans.emplace_back(x);
-        continue;
-      }
-
-      auto heap = heapList[heapIdArr[x]];
-      while (!heap.empty() && offline[heap.top()]) {
-        heap.pop();
-      }
-      ans.emplace_back(heap.empty() ? -1 : heap.top());
-    }
-    return ans;
+    return left;
   }
 };
+
+int minimumOneBitOperations(int n) {
+  if (n == 0) {
+    return 0;
+  }
+  int k = bit_width((uint32_t)n);
+  return (1 << k) - 1 - minimumOneBitOperations(n - (1 << (k - 1)));
+}

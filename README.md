@@ -4,9 +4,9 @@
 >
 > Algorithms implemented by JS/TS/C++/Python
 
-- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, **Java**, C++
+- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, C++
 - PostgreSQL, MySQL, SQLite, Redis, MongoDB, ElasticSearch
-- Node.js, React, Express, **Angular**, Vue.js, **SpringBoot**
+- Node.js, React, Express, **Angular**, Vue.js
 
 ## JS/TS
 

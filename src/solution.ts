@@ -66,3 +66,23 @@ function processQueries(
 }
 
 export default processQueries;
+
+// function minimumOneBitOperations(n: number): number {
+//   if (n === 0) {
+//     return 0;
+//   }
+//   const k = 32 - Math.clz32(n);
+//   return (1 << k) - 1 - minimumOneBitOperations(n - (1 << (k - 1)));
+// }
+
+// #include <bit>
+
+// using namespace std;
+
+// int minimumOneBitOperations(int n) {
+//   if (n == 0) {
+//     return 0;
+//   }
+//   int k = bit_width((uint32_t)n);
+//   return (1 << k) - 1 - minimumOneBitOperations(n - (1 << (k - 1)));
+// }
