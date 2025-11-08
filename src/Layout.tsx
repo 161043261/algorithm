@@ -1,6 +1,6 @@
-import App from "./App.js";
+import App from "./App";
 import { Component, createRef } from "react";
-import { Ctx } from "./ctx.js";
+import { Ctx } from "./ctx";
 
 interface IState {
   name: string;

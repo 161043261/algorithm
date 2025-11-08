@@ -4,6 +4,10 @@
 >
 > Algorithms implemented by JS/TS/C++/Python
 
+- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, **Java**, C++
+- PostgreSQL, MySQL, SQLite, Redis, MongoDB, ElasticSearch
+- Node.js, React, Express, **Angular**, Vue.js, **SpringBoot**
+
 ## JS/TS
 
 - nvm

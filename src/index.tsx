@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import Layout from "./Layout.js";
+import Layout from "./Layout";
 import "./main.css";
 
 const container = document.getElementById("webpack");

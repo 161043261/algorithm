@@ -15,8 +15,7 @@ const vueLoaderPlugin = new VueLoaderPlugin();
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   filename: "index.html",
-  template: resolve(__dirname, "../src/assets/index.html"),
-  // favicon: resolve(__dirname, "../src/assets/favicon.ico"),
+  template: resolve(__dirname, "../src/index.html"),
 });
 
 const bundleAnalyzerPlugin = new BundleAnalyzerPlugin({

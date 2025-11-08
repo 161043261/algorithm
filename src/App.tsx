@@ -4,8 +4,8 @@ import {
   type ContextType,
   type ErrorInfo,
 } from "react";
-import apiStore from "./demos/mobx.js";
-import { type ICtxType, Ctx } from "./ctx.js";
+import apiStore from "./demos/mobx";
+import { type ICtxType, Ctx } from "./ctx";
 
 interface IProps {
   propsName: string;
