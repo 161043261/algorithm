@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     // "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "sourceMap": true,
 
@@ -8,14 +9,15 @@
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "nodenext",
+    "types": ["node"],
     "skipLibCheck": true,
 
     "moduleResolution": "nodenext",
-    // "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "noEmit": false,
 
     /* Bundler mode */
-    // "moduleResolution": "bundler",
+    // "moduleResolution": "nodenext",
     // "allowImportingTsExtensions": true,
     // "noEmit": true,
 
@@ -35,17 +37,10 @@
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
 
     "outDir": "./dist",
     "rootDir": "./"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.vue",
-    "webpack/shims.d.ts",
-    "vite/client.d.ts"
-  ],
+  "include": ["src", "webpack/shims.d.ts", "vite/client.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

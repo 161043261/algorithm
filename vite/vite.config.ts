@@ -21,7 +21,7 @@ const getConfig = (type: "vue" | "react") =>
     },
     plugins: [
       ...(type === "react" ? [react()] : [vue(), vueJsx(), vueDevTools()]),
-      tailwindcss()
+      tailwindcss(),
     ],
     resolve: {
       alias: {

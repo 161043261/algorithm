@@ -1,6 +1,11 @@
-import { Component, type Context, type ContextType, type ErrorInfo } from "react";
+import {
+  Component,
+  type Context,
+  type ContextType,
+  type ErrorInfo,
+} from "react";
 import apiStore from "./demos/mobx.js";
-import { type ICtxType, Ctx } from "./index.tsx";
+import { type ICtxType, Ctx } from "./ctx.js";
 
 interface IProps {
   propsName: string;
@@ -25,8 +30,9 @@ class App extends Component<
   ISnapshot /** SS */
 > {
   static contextType = Ctx;
-  // Type restriction
+
   declare context: ContextType<Context<ICtxType>>;
+  // declare context: ICtxType;
 
   // readonly props: Readonly<IProps>;
   state: Readonly<IState> = {
