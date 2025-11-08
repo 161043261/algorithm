@@ -92,6 +92,10 @@ class App extends Component<
   }
 
   getSnapshotBeforeUpdate() {
+    return this.getSnapshot();
+  }
+
+  getSnapshot() {
     return {
       props: this.props,
       state: this.state,

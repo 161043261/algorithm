@@ -1,5 +1,5 @@
 import App from "./App.js";
-import { Component } from "react";
+import { Component, createRef } from "react";
 import { Ctx } from "./ctx.js";
 
 interface IState {
@@ -24,6 +24,15 @@ class Layout extends Component<Record<string, never>, IState> {
     this.setState({ age: age + 1 });
   };
 
+  appRef = createRef<App>();
+
+  getAppSnapshot = () => {
+    if (this.appRef.current) {
+      return this.appRef.current.getSnapshot();
+    }
+    return null;
+  };
+
   render() {
     const { name, age } = this.state;
     return (
@@ -39,7 +48,12 @@ class Layout extends Component<Record<string, never>, IState> {
           <Ctx.Provider
             value={{ ctxName: name, ctxAge: age, setCtxAge: this.setAge }}
           >
-            <App propsName={name} propsAge={age} setPropsAge={this.setAge} />
+            <App
+              propsName={name}
+              propsAge={age}
+              setPropsAge={this.setAge}
+              ref={this.appRef}
+            />
 
             <hr />
 
@@ -63,6 +77,12 @@ class Layout extends Component<Record<string, never>, IState> {
             }
           </Ctx.Provider>
         </main>
+
+        <footer>
+          <button onClick={() => console.log(this.getAppSnapshot())}>
+            getAppSnapshot
+          </button>
+        </footer>
       </>
     );
   }
