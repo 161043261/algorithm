@@ -30,5 +30,8 @@ winget install Microsoft.VisualStudio.2022.BuildTools --force --override "--wait
 
 ```bash
 conda create -n venv python=3.13 -y
+conda activate venv
+
 conda create -p ./.venv python=3.13 -y
+conda activate ./.venv
 ```
