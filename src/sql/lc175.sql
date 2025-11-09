@@ -13,7 +13,7 @@ Create table If Not Exists Address (
   state varchar(255)
 );
 
-# 清空 Person 表
+-- 清空 Person 表
 Truncate table Person;
 
 insert into
@@ -26,7 +26,7 @@ insert into
 values
   ('2', 'Alice', 'Bob');
 
-# 清空 Address 表
+-- 清空 Address 表
 Truncate table Address;
 
 insert into

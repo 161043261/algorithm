@@ -1,3 +1,5 @@
+use db0;
+
 Create table If Not Exists Employee (id int, salary int);
 
 Truncate table Employee;
