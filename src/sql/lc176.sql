@@ -19,7 +19,6 @@ insert into
 values
   ('3', '300');
 
--- Solution
 select
   (
     select distinct
@@ -34,7 +33,6 @@ select
       1
   ) as SecondHighestSalary;
 
--- Solution
 select
   ifnull(
     (
@@ -44,6 +42,8 @@ select
         Employee
       order by
         Salary desc
+      -- limit <startIndex>, <pageSize>;
+      -- limit <pageSize> offset <startIndex>;
       limit
         1
       offset

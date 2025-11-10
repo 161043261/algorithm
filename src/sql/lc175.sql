@@ -39,5 +39,11 @@ insert into
 values
   ('2', '3', 'Leetcode', 'California');
 
--- Solution
-select firstName, lastName, city, state from Person left join Address on Person.personId = Address.personId;
+select
+  firstName,
+  lastName,
+  city,
+  state
+from
+  Person
+  left join Address on Person.personId = Address.personId;
