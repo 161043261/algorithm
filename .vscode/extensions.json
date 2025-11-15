@@ -6,6 +6,7 @@
     "bradlc.vscode-tailwindcss",
     "catppuccin.catppuccin-vsc",
     "catppuccin.catppuccin-vsc-icons",
+    "charliermarsh.ruff",
     "dbaeumer.vscode-eslint",
     "dbcode.dbcode",
     "docker.docker",
@@ -51,6 +52,7 @@
     "ms-vscode.remote-repositories",
     "ms-vscode.remote-server",
     "ms-vscode.vscode-typescript-next",
+    "ms-vsliveshare.vsliveshare",
     "msjsdiag.vscode-react-native",
     "nuxtr.nuxt-vscode-extentions",
     "nuxtr.nuxtr-vscode",
@@ -58,13 +60,14 @@
     "redhat.vscode-xml",
     "redhat.vscode-yaml",
     "redis.redis-for-vscode",
+    "sameermalhotra.codebuddy",
     "streetsidesoftware.code-spell-checker",
     "styled-components.vscode-styled-components",
     "stylelint.vscode-stylelint",
+    "tencent-cloud.coding-copilot",
     "tooltitudeteam.tooltitude-pb",
     "unifiedjs.vscode-mdx",
     "vitest.explorer",
-    "vue.volar",
-    "yoavbls.pretty-ts-errors"
+    "vue.volar"
   ]
 }
