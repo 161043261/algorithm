@@ -44,9 +44,6 @@ declare module "*.stylus" {}
 declare module "*.pcss" {}
 declare module "*.sss" {}
 
-// Built-in asset types
-// see `src/node/constants.ts`
-
 // images
 declare module "*.apng" {
   const src: string;
