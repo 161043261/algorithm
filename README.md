@@ -2,11 +2,11 @@
 
 > [!important]
 >
-> Algorithms implemented by JS/TS/C++/Python
+> Algorithms implemented by JS/TS/GO/C++/Python
 
-- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, C++
-- PostgreSQL, MySQL, SQLite, Redis, MongoDB, ElasticSearch
-- Node.js, React, Express, **Angular**, Vue.js
+- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, C++, Go
+- MySQL, SQLite, Redis, MongoDB, ElasticSearch
+- Node.js, React, Express, Vue.js
 
 ## JS/TS
 
