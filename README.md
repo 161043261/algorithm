@@ -2,9 +2,9 @@
 
 > [!important]
 >
-> Algorithms implemented by JS/TS/GO/C++/Python
+> Algorithms implemented by JS/TS/C++/Python
 
-- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, C++, Go
+- JavaScript, HTML/CSS, SQL, Python, Bash, TypeScript, C++
 - MySQL, SQLite, Redis, MongoDB, ElasticSearch
 - Node.js, React, Express, Vue.js
 
