@@ -1,6 +1,6 @@
 function maxSubarraySum(nums: number[], k: number): number {
   let sum = 0;
-  const preSumArr = Array.from({ length: nums.length + 1 }, (val, idx) => {
+  const preSumArr = Array.from({ length: nums.length + 1 }, (_val, idx) => {
     if (idx === 0) {
       return sum;
     }

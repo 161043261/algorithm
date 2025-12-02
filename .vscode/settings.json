@@ -67,5 +67,5 @@
     "variant": "cpp",
     "vector": "cpp"
   },
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "standard"
 }

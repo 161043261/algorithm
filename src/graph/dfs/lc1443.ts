@@ -4,7 +4,7 @@ function minTime(n: number, edges: number[][], hasApple: boolean[]): number {
     g[x].push(y);
     g[y].push(x);
   }
-  const nums = Array.from({ length: n }, (val, idx) => (hasApple[idx] ? 1 : 0));
+  const nums = Array.from({ length: n }, (_val, idx) => (hasApple[idx] ? 1 : 0));
   const getNum = (i: number, pa: number) => {
     for (const child of g[i]) {
       if (child === pa) {

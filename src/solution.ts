@@ -15,3 +15,5 @@ function largestSumAfterKNegations(nums: number[], k: number): number {
   const sum = nums.reduce((a, b) => a + b);
   return restK % 2 === 0 ? sum : sum - 2 * nums[0];
 }
+
+export default largestSumAfterKNegations;
