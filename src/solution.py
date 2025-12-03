@@ -1,47 +1,59 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
+from math import inf
 
 
 class Solution:
     def countTrapezoids(self, points: List[List[int]]) -> int:
-        verticalDist2idxList: Dict[int, List[int]] = dict({})
-        k2dist2idxList: Dict[float, Dict[float, List[int]]] = dict({})
+        # def getM(i: int, j: int) -> str:
+        #     xi, yi = points[i]
+        #     xj, yj = points[j]
+        #     mx = xi + xj
+        #     my = yi + yj
+        #     return f"{mx},{my}"
+
+        k2b2cnt: Dict[float, Dict[float, int]] = dict({})
+        # m2k2cnt: Dict[str, Dict[float, int]] = dict({})
+        m2k2cnt: Dict[Tuple[int, int], Dict[float, int]] = dict({})
 
         for i in range(len(points) - 1):
             for j in range(i + 1, len(points)):
                 xi, yi = points[i]
                 xj, yj = points[j]
-                if xi == xj:
-                    if xi not in verticalDist2idxList:
-                        verticalDist2idxList[xi] = [i, j]
-                    else:
-                        verticalDist2idxList[xi].append(i)
-                        verticalDist2idxList[xi].append(j)
-                    continue
-                k = (yj - yi) / (xj - xi)
-                if k not in k2dist2idxList:
-                    k2dist2idxList[k] = dict({})
-                dist = ((xi * yj - xj * yi) ** 2) / ((xj - xi) ** 2 + (yj - yi) ** 2)
-                if (xi * yj - xj * yi) * (xi - xj) < 0:
-                    dist = -dist
-                if dist not in k2dist2idxList[k]:
-                    k2dist2idxList[k][dist] = [i, j]
+                dx = xj - xi
+                dy = yj - yi
+                k = dy / dx if dx else inf
+                b = (xj * yi - xi * yj) / (xj - xi) if dx else xi
+                # m = getM(i, j)
+                m = tuple[int, int]((xi + xj, yi + yj))
+
+                if k not in k2b2cnt:
+                    k2b2cnt[k] = dict({})
+                if b not in k2b2cnt[k]:
+                    k2b2cnt[k][b] = 1
                 else:
-                    k2dist2idxList[k][dist].append(i)
-                    k2dist2idxList[k][dist].append(j)
+                    k2b2cnt[k][b] += 1
+
+                if m not in m2k2cnt:
+                    m2k2cnt[m] = dict({})
+                if k not in m2k2cnt[m]:
+                    m2k2cnt[m][k] = 1
+                else:
+                    m2k2cnt[m][k] += 1
 
         ans = 0
-        s = 0
-        for xi in verticalDist2idxList:
-            l = len(verticalDist2idxList[xi])
-            cnt = (l * (l - 1)) // 2
-            ans += s * cnt
-            s += cnt
-        for k in k2dist2idxList:
-            dist2idxList = k2dist2idxList[k]
+        for k in k2b2cnt:
+            dist2cnt = k2b2cnt[k]
             s = 0
-            for dist in dist2idxList:
-                l = len(dist2idxList[dist])
-                cnt = (l * (l - 1)) // 2
+            for dist in dist2cnt:
+                cnt = dist2cnt[dist]
                 ans += s * cnt
+                s += cnt
+
+        for m in m2k2cnt:
+            k2cnt = m2k2cnt[m]
+            s = 0
+            for k in k2cnt:
+                cnt = k2cnt[k]
+                ans -= s * cnt
                 s += cnt
         return ans
