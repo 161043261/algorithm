@@ -24,6 +24,70 @@ TECH OTAKUS SAVE THE WORLD
 
 https://campus.mihoyo.com/
 
+## ACM 模式
+
+JS/TS
+
+```ts
+import { createInterface } from "readline";
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+let lineno = 0;
+
+rl.on("line", (line: string) => {
+  const [a, b] = line.trim().split(" ");
+  console.log(a, b);
+  lineno++;
+
+  if (lineno === 3) {
+    rl.close();
+  }
+});
+```
+
+Python
+
+```py
+a, b = list(map(int, input().split(" ")))
+print(a, b)
+```
+
+Golang
+
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	var a, b str
+
+	fmt.Scan(&a, &b)
+	fmt.Scanf("%d %d", &a, &b)
+
+	reader := bufio.NewReader(os.Stdin)
+	line, _, _ := reader.ReadLine()
+	words := strings.Split(string(line), " ")
+	fmt.Println(words)
+
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		line := scanner.Text()
+		words := strings.Split(line, " ")
+		fmt.Println(words)
+	}
+}
+```
+
 ## TODO
 
 - greedy
