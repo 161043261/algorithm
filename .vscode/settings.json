@@ -1,0 +1,11 @@
+{
+  "cSpell.words": ["endforeach", "nums"],
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.json": "jsonc"
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "java.project.sourcePaths": ["src/main/java"]
+}
