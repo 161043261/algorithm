@@ -1,64 +1,69 @@
 function spiralOrder(matrix: number[][]): number[] {
   let [x, y] = [0, 0];
-  let [lEnd, rEnd, tEnd, bEnd] = [0, matrix[0].length - 1, 1, matrix.length - 1]
-  const ans: number[] = []
+  let [lEnd, rEnd, tEnd, bEnd] = [
+    0,
+    matrix[0].length - 1,
+    1,
+    matrix.length - 1,
+  ];
+  const ans: number[] = [];
 
   const turnTop = (end: number) => {
     while (x > end) {
-      ans.push(matrix[x][y])
-      x--
+      ans.push(matrix[x][y]);
+      x--;
     }
-    tEnd++
-  }
+    tEnd++;
+  };
 
   const turnBottom = (end: number) => {
     while (x < end) {
-      ans.push(matrix[x][y])
-      x++
+      ans.push(matrix[x][y]);
+      x++;
     }
-    bEnd--
-  }
+    bEnd--;
+  };
 
   const turnLeft = (end: number) => {
     while (y > end) {
-      ans.push(matrix[x][y])
-      y--
+      ans.push(matrix[x][y]);
+      y--;
     }
-    lEnd++
-  }
+    lEnd++;
+  };
 
   const turnRight = (end: number) => {
     while (y < end) {
-      ans.push(matrix[x][y])
-      y++
+      ans.push(matrix[x][y]);
+      y++;
     }
-    rEnd--
-  }
+    rEnd--;
+  };
 
   while (true) {
     if (lEnd <= rEnd) {
-      turnRight(rEnd)
+      turnRight(rEnd);
     } else {
-      break
+      break;
     }
     if (tEnd <= bEnd) {
-      turnBottom(bEnd)
+      turnBottom(bEnd);
     } else {
-      break
+      break;
     }
     if (lEnd <= rEnd) {
-      turnLeft(lEnd)
+      turnLeft(lEnd);
     } else {
-      break
+      break;
     }
     if (tEnd <= bEnd) {
-      turnTop(tEnd)
+      turnTop(tEnd);
     } else {
-      break
+      break;
     }
   }
-  ans.push(matrix[x][y])
-  return ans
+  ans.push(matrix[x][y]);
+  return ans;
 }
 
-export default spiralOrder
+export default spiralOrder;
