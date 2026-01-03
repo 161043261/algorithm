@@ -7,11 +7,9 @@ function quickSort(nums: number[], l: number, r: number) {
     let i = l,
       j = r;
     while (i < j) {
-      //! 先右
       while (i < j && nums[j] >= nums[l]) {
         j--;
       }
-      //! 后左
       while (i < j && nums[i] <= nums[l]) {
         i++;
       }
