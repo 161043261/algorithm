@@ -32,11 +32,6 @@ https://campus.mihoyo.com/
 - graph
   - bellman-ford
   - bfs
-- [lc106.cc](src\binary-tree\lc106.cc)
-- [lc42.cc](src\mono-stack\lc42.cc)
-- [lc3013.cc](src\sliding-window\lc3013.cc)
-- [km54.cc](src\string\km54.cc)
-- [km55.cc](src\string\km55.cc)
 
 ## ACM 模式
 
