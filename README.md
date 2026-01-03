@@ -39,14 +39,28 @@ const rl = readline.createInterface({
 let lineno = 0;
 
 rl.on("line", (line: string) => {
-  const [a, b] = line.trim().split(" ");
-  console.log(a, b);
+  console.log(line);
   lineno++;
 
   if (lineno === 3) {
     rl.close();
   }
 });
+```
+
+```ts
+import { createInterface } from "node:readline";
+const rl = createInterface({
+  input: process.stdin,
+});
+
+const iter = rl[Symbol.asyncIterator]();
+const readline = async () => (await iter.next()).value;
+
+(async function () {
+  const line = await readline();
+  console.log(line);
+})();
 ```
 
 Python
@@ -71,8 +85,8 @@ import (
 func main() {
 	var a, b str
 
-	fmt.Scan(&a, &b)
-	fmt.Scanf("%d %d", &a, &b)
+	// fmt.Scan(&a, &b)
+	fmt.Scanf("%d %d\n", &a, &b)
 
 	reader := bufio.NewReader(os.Stdin)
 	line, _, _ := reader.ReadLine()
