@@ -1,0 +1,29 @@
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const cwd = process.cwd();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactCompiler: true,
+  turbopack: {
+    root: resolve(__dirname, "../../"),
+  },
+  serverExternalPackages: [cwd, "../../common/temp/node_modules"],
+  cacheComponents: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
+};
+
+export default nextConfig;

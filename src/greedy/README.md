@@ -1,0 +1,3 @@
+# Greedy
+
+Written by golang
