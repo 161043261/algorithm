@@ -1,0 +1,11 @@
+{
+  "cSpell.words": ["leetcode", "nums"],
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.json": "jsonc"
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "deno.enable": false
+}
