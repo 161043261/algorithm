@@ -3,8 +3,6 @@
 project(algorithm C CXX)
 
 # sudo apt install clang-tools
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -13,24 +11,21 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_GENERATOR Ninja)
 
 if(WIN32)
-  set(CMAKE_C_COMPILER clang-cl)
   set(CMAKE_CXX_COMPILER clang-cl)
 else()
-  set(CMAKE_C_COMPILER clang)
   set(CMAKE_CXX_COMPILER clang++)
 endif()
 
 set(CMAKE_BUILD_TYPE Debug)
 
 file(GLOB_RECURSE source_files CONFIGURE_DEPENDS
-  "${CMAKE_SOURCE_DIR}/src/*.c"
   "${CMAKE_SOURCE_DIR}/src/*.cc"
   "${CMAKE_SOURCE_DIR}/src/*.cpp"
   "${CMAKE_SOURCE_DIR}/src/*.cxx"
   "${CMAKE_SOURCE_DIR}/src/*.c++"
 )
 
-set(SOURCE_EXTENSIONS ".c" ".cc" ".cpp" ".cxx" ".c++")
+set(SOURCE_EXTENSIONS ".cc" ".cpp" ".cxx" ".c++")
 
 foreach(source_file IN LISTS source_files)
   file(READ "${source_file}" source_file_content)

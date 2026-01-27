@@ -1,40 +1,39 @@
+#include <queue>
 #include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-  bool lemonadeChange(vector<int> &bills) {
-    auto cnt5 = 0;
-    auto cnt10 = 0;
-    for (auto i = 0; i < bills.size(); i++) {
-      if (bills[i] == 5) {
-        cnt5++;
+  int minCost(int n, vector<vector<int>> &edges) {
+    auto graph = vector<vector<pair<int, int>>>(n);
+    for (auto &edge : edges) {
+      auto u = edge[0], v = edge[1], w = edge[2];
+      graph[u].emplace_back(v, w);
+      graph[v].emplace_back(u, w * 2);
+    }
+    auto dis = vector<int>(n, INT_MAX);
+    auto pq =
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>>();
+    dis[0] = 0;
+    pq.emplace(0, 0);
+    while (!pq.empty()) {
+      auto [dis_x, x] = pq.top();
+      pq.pop();
+      if (dis_x > dis[x]) {
         continue;
       }
-
-      if (bills[i] == 10) {
-        if (cnt5 == 0) {
-          return false;
-        }
-        cnt5--;
-        cnt10++;
-        continue;
+      if (x == n - 1) {
+        return dis_x;
       }
-
-      if (bills[i] == 20) {
-        if (cnt10 > 0 && cnt5 > 0) {
-          cnt10--;
-          cnt5--;
-          continue;
+      for (auto &[y, wt] : graph[x]) {
+        auto new_dis_y = dis_x + wt;
+        if (new_dis_y < dis[y]) {
+          dis[y] = new_dis_y;
+          pq.emplace(new_dis_y, y);
         }
-        if (cnt5 >= 3) {
-          cnt5 -= 3;
-          continue;
-        }
-        return false;
       }
     }
-    return true;
-  }
+    return -1;
+  };
 };
