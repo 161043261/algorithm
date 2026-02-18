@@ -12,6 +12,8 @@
 # cmake --build build --target clean
 # meson compile -C build --clean
 
+# meson install -C build
+
 # rm -rf ./build
 # meson setup build --wipe
 project('algorithm',

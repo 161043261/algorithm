@@ -12,8 +12,8 @@ def install_script():
         target_name, rel_path = m.split(':')
 
         exe_ext = '.exe' if os.name == 'nt' else ''
-        src_file = os.path.normpath(os.path.join(build_dir, target_name + exe_ext))
-        dst_file = os.path.normpath(os.path.join(build_dir, rel_path + exe_ext))
+        src_file = os.path.join(build_dir, target_name + exe_ext)
+        dst_file = os.path.join(build_dir, rel_path + exe_ext)
 
         if os.path.exists(src_file):
             if src_file.lower() == dst_file.lower():
