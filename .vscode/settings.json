@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.page-template": "vue",
+    "*.layout-template": "vue",
+    "*.vue": "vue",
+    "*.json": "jsonc"
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "workbench.tree.renderIndentGuides": "always",
+}
