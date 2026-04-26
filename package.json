@@ -1,0 +1,36 @@
+{
+  "author": "github.com/hangtiancheng",
+  "description": "Algorithm implemented by JS/TS/C++",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^22.19.5",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0"
+  },
+  "keywords": [
+    "Algorithm"
+  ],
+  "license": "ISC",
+  "lint-staged": {
+    "*.{json,jsonc,js,jsx,ts,tsx,html,vue,css,md,mdx}": [
+      "pnpm format"
+    ]
+  },
+  "name": "algorithm",
+  "packageManager": "pnpm@10.13.1",
+  "private": true,
+  "repository": "git@github.com:hangtiancheng/algorithm",
+  "scripts": {
+    "cmake": "cmake -S ./ -B ./build && cmake --build ./build",
+    "format": "prettier --write ./src",
+    "lint": "eslint ./src --cache --quiet --ext .js,.jsx,.ts,.tsx --fix",
+    "prepare": "husky"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

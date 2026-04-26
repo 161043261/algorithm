@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式系统 + 购物车</title>
+    <style>
+      body {
+        font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+        padding: 16px;
+      }
+
+      .row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .panel {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        width: 380px;
+      }
+
+      .panel h2 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 6px 10px;
+        cursor: pointer;
+      }
+
+      .goods button {
+        margin-right: 8px;
+      }
+
+      .cart-item {
+        padding: 6px 0;
+        border-bottom: 1px dashed #eee;
+      }
+
+      .muted {
+        color: #666;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .sum {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>响应式系统 + 购物车</h1>
+    <p class="muted">
+      请补全 createProxy / observe，使其支持：深度监听、path、microtask 批处理。
+    </p>
+
+    <div class="row">
+      <div class="panel goods">
+        <h2>商品列表</h2>
+        <div>商品 1 [¥10]</div>
+        <button id="btn1">添加 商品1</button>
+        <div style="margin-top: 10px">
+          <div>商品 2 [¥20]</div>
+          <button id="btn2">添加 商品2</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>购物车</h2>
+        <div id="cart"></div>
+        <div class="sum muted" id="summary"></div>
+      </div>
+    </div>
+
+    <script>
+      /**
+       * TODO 1:
+       * 实现 createProxy(target, handler, basePath?)
+       * 要求：
+       * - 返回 target 的 Proxy
+       * - set/delete 时：真实写入 + 调 handler(change)
+       * - change: { type, target, key, oldValue, newValue, path? }
+       * - path 的拼接规则：basePath 存在时 "basePath.key"，否则 "key"
+       */
+      function createProxy(target, handler, basePath) {
+        if (typeof target !== "object" || target === null) {
+          return target;
+        }
+
+        function joinPath(key) {
+          return basePath ? `${basePath}.${String(key)}` : String(key);
+        }
+
+        return new Proxy(target, {
+          get(currentTarget, key, receiver) {
+            const value = Reflect.get(currentTarget, key, receiver);
+            if (typeof handler.__getChildProxy === "function") {
+              return handler.__getChildProxy(value, joinPath(key));
+            }
+            return value;
+          },
+          set(currentTarget, key, value, receiver) {
+            const oldValue = currentTarget[key];
+            const path = joinPath(key);
+            const result = Reflect.set(currentTarget, key, value, receiver);
+
+            handler({
+              type: "set",
+              target: currentTarget,
+              key,
+              oldValue,
+              newValue: value,
+              path,
+            });
+
+            return result;
+          },
+          deleteProperty(currentTarget, key) {
+            const oldValue = currentTarget[key];
+            const path = joinPath(key);
+            const result = Reflect.deleteProperty(currentTarget, key);
+
+            handler({
+              type: "delete",
+              target: currentTarget,
+              key,
+              oldValue,
+              newValue: undefined,
+              path,
+            });
+
+            return result;
+          },
+        });
+      }
+
+      /**
+       * TODO 2:
+       * 实现 observe(data, handler)
+       * 要求：
+       * - 深度监听任意层级对象/数组
+       * - 支持循环引用（WeakMap）
+       * - handler 在 microtask 批处理后触发: handler(changelist)
+       * - change.path 必须为完整路径，如 "0.prop1"
+       */
+      function observe(data, handler) {
+        const proxyCache = new WeakMap();
+        const changeList = [];
+        let scheduled = false;
+
+        function flushChanges() {
+          scheduled = false;
+          if (changeList.length === 0) {
+            return;
+          }
+
+          const batch = changeList.slice();
+          changeList.length = 0;
+          handler(batch);
+        }
+
+        function scheduleFlush() {
+          if (scheduled) {
+            return;
+          }
+
+          scheduled = true;
+          Promise.resolve().then(flushChanges);
+        }
+
+        function getPathMap(target) {
+          let pathMap = proxyCache.get(target);
+          if (!pathMap) {
+            pathMap = new Map();
+            proxyCache.set(target, pathMap);
+          }
+          return pathMap;
+        }
+
+        function createDeepProxy(target, basePath) {
+          if (typeof target !== "object" || target === null) {
+            return target;
+          }
+
+          const pathKey = basePath || "";
+          const pathMap = getPathMap(target);
+          if (pathMap.has(pathKey)) {
+            return pathMap.get(pathKey);
+          }
+
+          const proxyHandler = function (change) {
+            changeList.push(change);
+            scheduleFlush();
+          };
+
+          proxyHandler.__getChildProxy = function (value, childPath) {
+            return createDeepProxy(value, childPath);
+          };
+
+          const proxy = createProxy(target, proxyHandler, basePath);
+          pathMap.set(pathKey, proxy);
+          return proxy;
+        }
+
+        return createDeepProxy(data, "");
+      }
+
+      // ======= 页面业务（不要修改按钮 id / cart-item 文案格式）=======
+      const products = [
+        { id: 1, name: "商品 1", price: 10 },
+        { id: 2, name: "商品 2", price: 20 },
+      ];
+
+      // 购物车结构: [{id,name,price,count}]
+      const cartData = observe([], function (changelist) {
+        // 任意变更后自动渲染
+        renderCart();
+      });
+
+      function addToCart(productId) {
+        const p = products.find((x) => x.id === productId);
+        if (!p) return;
+
+        const existing = cartData.find((x) => x.id === p.id);
+        if (existing) {
+          // 同一 tick 内可能多次 set，用于测试 batch 能力
+          existing.count += 1;
+          existing.lastAddedAt = Date.now();
+        } else {
+          cartData.push({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            count: 1,
+            lastAddedAt: Date.now(),
+          });
+        }
+      }
+
+      function renderCart() {
+        const cartEl = document.getElementById("cart");
+        const summaryEl = document.getElementById("summary");
+
+        cartEl.innerHTML = cartData
+          .map((item) => {
+            return `<div class="cart-item">${item.name}：${item.count} 件</div>`;
+          })
+          .join("");
+
+        const totalCount = cartData.reduce((s, x) => s + (x.count || 0), 0);
+        const totalPrice = cartData.reduce(
+          (s, x) => s + (x.count || 0) * (x.price || 0),
+          0,
+        );
+        summaryEl.textContent = `合计：${totalCount} 件，¥${totalPrice}`;
+      }
+
+      document
+        .getElementById("btn1")
+        .addEventListener("click", () => addToCart(1));
+      document
+        .getElementById("btn2")
+        .addEventListener("click", () => addToCart(2));
+
+      renderCart();
+    </script>
+  </body>
+</html>
